@@ -1,4 +1,8 @@
-Voici une plateforme de tests psychométriques authentique et rigoureuse, conçue comme un outil de laboratoire. Chaque test est implémenté avec plusieurs items, des stimuli variés (sans émojis, avec des formes géométriques et des couleurs) et un calcul de score fidèle aux principes des tests originaux. L'interface est sobre, 100% mobile, et le déroulement est linéaire. Le code secret 1983 dévoile la signification réelle de chaque lettre (A à V).
+J'ai conçu un long questionnaire psychologique complet qui intègre à la fois les dimensions des tests classiques (BART, SVO, Raven, RME, Big Five, MMPI, WAIS, WISC, Stroop, TMT, N‑back, EQ, TAS‑20, reconnaissance faciale, Go/NoGo, Iowa, Delay discounting, BDI, STAI, PCL5) et le test « MrBeast » (curiosité, ambition, obsession positive).
+
+L'utilisateur répond à 64 questions en cliquant sur les options. Chaque construit psychologique est évalué par 2 à 4 affirmations sur une échelle de 1 à 5, ou par des choix spécifiques pour le test MrBeast.
+
+À la fin, un tableau de bord affiche les scores sous forme de lettres (A à V) – le nom réel du test reste caché. Un champ code secret « 1983 » permet au chercheur de dévoiler la signification de chaque lettre, des seuils interprétatifs (personnalité, confiance, traits pathologiques) et le résultat du test MrBeast.
 
 ```html
 <!DOCTYPE html>
@@ -6,9 +10,9 @@ Voici une plateforme de tests psychométriques authentique et rigoureuse, conçu
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
-  <title>Batterie de tests psychométriques · Laboratoire Cognition</title>
+  <title>Questionnaire de personnalité et cognition · Laboratoire</title>
   <style>
-    /* ---------- STYLE INSTITUTIONNEL – sobre, lisible, mobile ---------- */
+    /* ---------- STYLE SOBRE, INSTITUTIONNEL, 100% MOBILE ---------- */
     * {
       margin: 0;
       padding: 0;
@@ -17,1534 +21,1060 @@ Voici une plateforme de tests psychométriques authentique et rigoureuse, conçu
     }
 
     body {
-      background: #e9f0f5;
+      background: #eef3f7;
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      padding: 20px 16px;
+      padding: 24px 16px;
       min-height: 100vh;
     }
 
     .container {
-      max-width: 800px;
+      max-width: 900px;
       width: 100%;
       background: white;
-      border-radius: 32px;
-      box-shadow: 0 15px 30px rgba(0,0,0,0.05);
-      padding: 30px 24px;
-      border: 1px solid #d0dfe9;
+      border-radius: 36px;
+      box-shadow: 0 20px 40px rgba(0,0,0,0.04);
+      padding: 36px 30px;
+      border: 1px solid #d4e0e9;
     }
 
     .header {
       display: flex;
       justify-content: space-between;
       align-items: baseline;
-      border-bottom: 2px solid #c2d4df;
-      padding-bottom: 14px;
-      margin-bottom: 28px;
+      border-bottom: 2px solid #cbd8e3;
+      padding-bottom: 16px;
+      margin-bottom: 30px;
     }
 
     .header h1 {
-      font-weight: 500;
-      font-size: 1.5rem;
-      color: #1c3c4c;
+      font-weight: 520;
+      font-size: 1.6rem;
+      color: #1e4052;
       letter-spacing: -0.3px;
     }
 
-    .phase-badge {
-      background: #dde9f0;
-      padding: 6px 20px;
+    .subhead {
+      color: #3a6273;
+      font-size: 0.95rem;
+      background: #e5f0f6;
+      padding: 8px 18px;
       border-radius: 40px;
-      font-size: 0.85rem;
-      font-weight: 550;
-      color: #1c3c4c;
     }
 
-    .test-card {
-      background: white;
-      border-radius: 24px;
-      padding: 26px 22px;
-      margin-bottom: 28px;
-      border: 1px solid #e5eef4;
+    /* questionnaire */
+    .form-section {
+      margin-bottom: 30px;
     }
 
-    .test-title {
+    .section-title {
       font-weight: 620;
-      font-size: 1.3rem;
-      color: #15313e;
-      border-left: 6px solid #3a7a8c;
+      font-size: 1.2rem;
+      color: #1c3f4f;
+      border-left: 6px solid #3f8da0;
       padding-left: 16px;
-      margin-bottom: 24px;
+      margin: 30px 0 20px;
     }
 
-    .instruction {
-      background: #f1f8fc;
-      padding: 18px 24px;
-      border-radius: 18px;
-      margin-bottom: 28px;
-      font-size: 1rem;
-      color: #1c5266;
-      border-left: 5px solid #6999ad;
-      line-height: 1.5;
+    .question-card {
+      background: #f9fcfe;
+      border-radius: 20px;
+      padding: 22px 22px;
+      margin-bottom: 16px;
+      border: 1px solid #e1ecf2;
     }
 
-    .btn, .response-btn {
+    .question-text {
+      font-weight: 540;
+      font-size: 1.05rem;
+      color: #183b46;
+      margin-bottom: 18px;
+    }
+
+    .options {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      align-items: center;
+    }
+
+    .option-btn {
       background: white;
-      border: 1.8px solid #c2d3de;
-      padding: 14px 28px;
+      border: 1.8px solid #c2d4e0;
+      padding: 12px 22px;
       border-radius: 50px;
-      font-size: 1rem;
-      font-weight: 520;
-      color: #15313e;
-      margin: 6px 8px 6px 0;
+      font-size: 0.98rem;
+      font-weight: 500;
+      color: #1e3f4f;
       cursor: pointer;
-      touch-action: manipulation;
       transition: 0.05s;
+      touch-action: manipulation;
     }
 
-    .btn-primary {
-      background: #2a6073;
-      border-color: #1e4757;
+    .option-btn.selected {
+      background: #2a6b7a;
+      border-color: #1e4f5e;
       color: white;
     }
 
-    .btn-primary:active {
-      background: #1b4a5c;
-    }
-
-    .btn:active {
-      background: #e1ecf2;
-      border-color: #8aa9ba;
-    }
-
-    /* BART */
-    .balloon-area {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-    }
-    .balloon-svg {
-      width: 160px;
-      height: 180px;
-    }
-    .cash-box {
-      background: #eaf2f7;
-      padding: 12px 30px;
-      border-radius: 60px;
-      font-size: 1.3rem;
-      font-weight: 600;
-      color: #1e4f5e;
-      margin: 15px 0;
-    }
-
-    /* SVO */
-    .svo-panel {
-      background: #f5fafd;
-      padding: 24px;
-      border-radius: 24px;
-      margin-bottom: 16px;
-    }
-
-    /* RAVEN */
-    .matrix-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 12px;
-      background: #264653;
-      padding: 20px;
-      border-radius: 24px;
-      margin: 20px 0;
-    }
-    .matrix-cell {
-      background: white;
-      aspect-ratio: 1;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 2rem;
-      font-weight: 500;
-      border-radius: 16px;
-      box-shadow: inset 0 -2px 0 #b6ceda;
-    }
-    .raven-options {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 18px;
-      justify-content: center;
-      margin: 24px 0;
-    }
-    .raven-option {
-      background: #f4faff;
-      border: 3px solid #c6dae3;
-      width: 90px;
-      height: 90px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 2rem;
-      border-radius: 20px;
-      cursor: pointer;
-    }
-
-    /* RME – yeux SVG */
-    .eyes-container {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-    }
-    .eyes-svg {
-      width: 260px;
-      height: 130px;
-      margin-bottom: 20px;
-    }
-    .emotion-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 16px;
-      width: 100%;
-    }
-
-    /* Big Five / échelles Likert */
+    /* échelles likert */
     .likert {
       display: flex;
       flex-wrap: wrap;
-      gap: 12px;
-      margin-top: 16px;
+      gap: 8px;
     }
     .likert-btn {
-      background: #f2f7fa;
-      border: 2px solid #c2d7e2;
-      padding: 12px 24px;
-      border-radius: 40px;
-      font-size: 1rem;
+      min-width: 54px;
+      text-align: center;
     }
 
-    /* TMT (Trail Making) */
-    .tmt-grid {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 20px;
-      background: #2e4e5e;
-      padding: 24px;
-      border-radius: 28px;
-    }
-    .tmt-circle {
-      background: white;
-      border-radius: 50%;
-      aspect-ratio: 1;
+    /* bouton de calcul */
+    .submit-area {
+      margin: 40px 0 30px;
       display: flex;
-      align-items: center;
       justify-content: center;
-      font-size: 1.8rem;
-      font-weight: 600;
-      color: #15313e;
-      cursor: pointer;
     }
-
-    /* N-back */
-    .nback-stim {
-      font-size: 5rem;
-      text-align: center;
-      background: #e2eef4;
-      padding: 30px;
-      border-radius: 40px;
-      margin: 20px 0;
-    }
-
-    /* Iowa Gambling */
-    .iowa-decks {
-      display: flex;
-      justify-content: space-around;
-      flex-wrap: wrap;
-    }
-    .deck {
-      background: #2e5f6b;
+    .btn-calculer {
+      background: #286b7c;
+      border: none;
+      padding: 18px 48px;
+      border-radius: 60px;
       color: white;
-      padding: 24px;
-      border-radius: 24px;
-      font-size: 1.4rem;
+      font-size: 1.25rem;
       font-weight: 600;
-      margin: 8px;
+      letter-spacing: 0.5px;
       cursor: pointer;
-      min-width: 120px;
-      text-align: center;
+      box-shadow: 0 6px 12px rgba(0,0,0,0.08);
+      border: 1px solid #ffffff40;
     }
 
-    /* Visages schématiques (Facial) */
-    .face-svg {
-      width: 140px;
-      height: 140px;
-      margin: 10px auto;
-    }
-
-    /* Dashboard lettres */
+    /* dashboard lettres */
     .dashboard {
-      background: #1b3843;
+      background: #1a3a45;
       border-radius: 28px;
-      padding: 26px 20px;
-      margin: 40px 0 24px;
+      padding: 28px 24px;
+      margin: 36px 0 28px;
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(90px, 1fr));
-      gap: 20px;
+      grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+      gap: 22px;
+      color: white;
     }
     .score-item {
       text-align: center;
     }
     .score-letter {
-      font-size: 2.4rem;
+      font-size: 2.5rem;
       font-weight: 700;
-      color: #fae19b;
+      color: #fbeba0;
     }
     .score-number {
-      font-size: 1.9rem;
+      font-size: 2rem;
       font-weight: 700;
       background: #0000001c;
       padding: 6px 12px;
-      border-radius: 50px;
-      color: white;
+      border-radius: 60px;
     }
 
-    /* Admin */
-    .admin-panel {
-      background: #eaf1f7;
+    /* interprétations */
+    .interpretation-box {
+      background: #f1f6fa;
       border-radius: 24px;
-      padding: 24px;
-      border-left: 8px solid #1b3843;
-    }
-    .code-row {
-      display: flex;
-      gap: 14px;
-      flex-wrap: wrap;
-      align-items: center;
-    }
-    #codeSecret {
-      padding: 14px 24px;
-      font-size: 1.2rem;
-      width: 150px;
-      text-align: center;
-      border-radius: 60px;
-      border: 1.5px solid #95aebe;
-      background: white;
-      letter-spacing: 4px;
-    }
-    .interp-box {
-      background: #fffcf0;
-      padding: 24px;
-      border-radius: 20px;
-      margin-top: 24px;
-      border: 1px solid #e1d6b0;
+      padding: 26px;
+      margin-top: 30px;
+      border-left: 10px solid #1a3a45;
       white-space: pre-line;
+      line-height: 1.6;
     }
     .hidden {
       display: none;
     }
-    .footer {
-      font-size: 0.7rem;
-      color: #5a7d8b;
+
+    /* admin code */
+    .admin-panel {
+      background: #edf4f9;
+      border-radius: 24px;
+      padding: 26px;
+      margin-top: 30px;
+    }
+    .code-row {
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+    #codeSecret {
+      padding: 16px 24px;
+      font-size: 1.3rem;
+      width: 170px;
       text-align: center;
-      margin-top: 28px;
+      border-radius: 60px;
+      border: 1.5px solid #8ea6b7;
+      background: white;
+      letter-spacing: 5px;
+    }
+    .btn {
+      background: white;
+      border: 1.8px solid #acc1ce;
+      padding: 14px 28px;
+      border-radius: 60px;
+      font-size: 1rem;
+      font-weight: 540;
+      cursor: pointer;
+    }
+    .btn-dark {
+      background: #1a3a45;
+      color: white;
+      border: none;
+    }
+
+    .footer {
+      margin-top: 36px;
+      font-size: 0.75rem;
+      color: #618392;
+      text-align: center;
+      border-top: 1px solid #d1dfe8;
+      padding-top: 24px;
     }
   </style>
 </head>
 <body>
   <div class="container">
     <div class="header">
-      <h1>LABORATOIRE COGNITION</h1>
-      <span class="phase-badge" id="phaseLabel">Test 1/22</span>
+      <h1>ÉVALUATION PSYCHOLOGIQUE</h1>
+      <span class="subhead">Questionnaire intégral</span>
     </div>
 
-    <div id="testPanel" class="test-card"></div>
+    <!-- Formulaire principal -->
+    <form id="questionnaireForm">
+      <!-- ========== PARTIE 1 : CONSTRUCTS CLASSIQUES ========= -->
+      <div class="section-title">🧠 Cognition & personnalité</div>
 
-    <!-- DASHBOARD : lettres et scores -->
-    <div class="dashboard" id="dashboardScores"></div>
+      <!-- BART (risque) -->
+      <div class="question-card" data-construct="bart">
+        <div class="question-text">1. J’aime prendre des risques, même si je peux tout perdre.</div>
+        <div class="options likert">
+          <button type="button" class="option-btn likert-btn" data-value="1">1</button>
+          <button type="button" class="option-btn likert-btn" data-value="2">2</button>
+          <button type="button" class="option-btn likert-btn" data-value="3">3</button>
+          <button type="button" class="option-btn likert-btn" data-value="4">4</button>
+          <button type="button" class="option-btn likert-btn" data-value="5">5</button>
+        </div>
+      </div>
+      <div class="question-card" data-construct="bart">
+        <div class="question-text">2. Dans un jeu, je continue à gonfler le ballon même s’il peut exploser.</div>
+        <div class="options likert">
+          <button type="button" class="option-btn likert-btn" data-value="1">1</button>
+          <button type="button" class="option-btn likert-btn" data-value="2">2</button>
+          <button type="button" class="option-btn likert-btn" data-value="3">3</button>
+          <button type="button" class="option-btn likert-btn" data-value="4">4</button>
+          <button type="button" class="option-btn likert-btn" data-value="5">5</button>
+        </div>
+      </div>
 
-    <!-- Espace chercheur – code 1983 -->
+      <!-- SVO (prosocialité) -->
+      <div class="question-card" data-construct="svo">
+        <div class="question-text">3. Je préfère partager équitablement même si cela signifie recevoir moins.</div>
+        <div class="options likert">
+          <button class="option-btn likert-btn" data-value="1">1</button>
+          <button class="option-btn likert-btn" data-value="2">2</button>
+          <button class="option-btn likert-btn" data-value="3">3</button>
+          <button class="option-btn likert-btn" data-value="4">4</button>
+          <button class="option-btn likert-btn" data-value="5">5</button>
+        </div>
+      </div>
+      <div class="question-card" data-construct="svo">
+        <div class="question-text">4. Quand je collabore, je cherche à maximiser le gain du groupe, pas seulement le mien.</div>
+        <div class="options likert">
+          <button class="option-btn likert-btn" data-value="1">1</button>
+          <button class="option-btn likert-btn" data-value="2">2</button>
+          <button class="option-btn likert-btn" data-value="3">3</button>
+          <button class="option-btn likert-btn" data-value="4">4</button>
+          <button class="option-btn likert-btn" data-value="5">5</button>
+        </div>
+      </div>
+
+      <!-- Raven (raisonnement) -->
+      <div class="question-card" data-construct="raven">
+        <div class="question-text">5. Je repère facilement des régularités dans les séquences d’images ou de chiffres.</div>
+        <div class="options likert">
+          <button class="option-btn likert-btn" data-value="1">1</button>
+          <button class="option-btn likert-btn" data-value="2">2</button>
+          <button class="option-btn likert-btn" data-value="3">3</button>
+          <button class="option-btn likert-btn" data-value="4">4</button>
+          <button class="option-btn likert-btn" data-value="5">5</button>
+        </div>
+      </div>
+      <div class="question-card" data-construct="raven">
+        <div class="question-text">6. J’aime résoudre des énigmes logiques.</div>
+        <div class="options likert">
+          <button class="option-btn likert-btn" data-value="1">1</button>
+          <button class="option-btn likert-btn" data-value="2">2</button>
+          <button class="option-btn likert-btn" data-value="3">3</button>
+          <button class="option-btn likert-btn" data-value="4">4</button>
+          <button class="option-btn likert-btn" data-value="5">5</button>
+        </div>
+      </div>
+
+      <!-- RME (sensibilité sociale) -->
+      <div class="question-card" data-construct="rme">
+        <div class="question-text">7. Je comprends rapidement ce que quelqu’un ressent, même sans qu’il parle.</div>
+        <div class="options likert">
+          <button class="option-btn likert-btn" data-value="1">1</button>
+          <button class="option-btn likert-btn" data-value="2">2</button>
+          <button class="option-btn likert-btn" data-value="3">3</button>
+          <button class="option-btn likert-btn" data-value="4">4</button>
+          <button class="option-btn likert-btn" data-value="5">5</button>
+        </div>
+      </div>
+      <div class="question-card" data-construct="rme">
+        <div class="question-text">8. Je peux deviner ce qu’une personne pense en voyant seulement ses yeux.</div>
+        <div class="options likert">
+          <button class="option-btn likert-btn" data-value="1">1</button>
+          <button class="option-btn likert-btn" data-value="2">2</button>
+          <button class="option-btn likert-btn" data-value="3">3</button>
+          <button class="option-btn likert-btn" data-value="4">4</button>
+          <button class="option-btn likert-btn" data-value="5">5</button>
+        </div>
+      </div>
+
+      <!-- BIG FIVE (5 dimensions) -->
+      <div class="question-card" data-construct="big5_o">
+        <div class="question-text">9. Je suis curieux(se) de découvrir de nouvelles choses, idées, cultures.</div>
+        <div class="options likert">
+          <button class="option-btn likert-btn" data-value="1">1</button>
+          <button class="option-btn likert-btn" data-value="2">2</button>
+          <button class="option-btn likert-btn" data-value="3">3</button>
+          <button class="option-btn likert-btn" data-value="4">4</button>
+          <button class="option-btn likert-btn" data-value="5">5</button>
+        </div>
+      </div>
+      <div class="question-card" data-construct="big5_c">
+        <div class="question-text">10. Je termine toujours ce que je commence.</div>
+        <div class="options likert">
+          <button class="option-btn likert-btn" data-value="1">1</button>
+          <button class="option-btn likert-btn" data-value="2">2</button>
+          <button class="option-btn likert-btn" data-value="3">3</button>
+          <button class="option-btn likert-btn" data-value="4">4</button>
+          <button class="option-btn likert-btn" data-value="5">5</button>
+        </div>
+      </div>
+      <div class="question-card" data-construct="big5_e">
+        <div class="question-text">11. Je me sens à l’aise dans les groupes et les situations sociales.</div>
+        <div class="options likert">
+          <button class="option-btn likert-btn" data-value="1">1</button>
+          <button class="option-btn likert-btn" data-value="2">2</button>
+          <button class="option-btn likert-btn" data-value="3">3</button>
+          <button class="option-btn likert-btn" data-value="4">4</button>
+          <button class="option-btn likert-btn" data-value="5">5</button>
+        </div>
+      </div>
+      <div class="question-card" data-construct="big5_a">
+        <div class="question-text">12. Je fais confiance aux autres facilement.</div>
+        <div class="options likert">
+          <button class="option-btn likert-btn" data-value="1">1</button>
+          <button class="option-btn likert-btn" data-value="2">2</button>
+          <button class="option-btn likert-btn" data-value="3">3</button>
+          <button class="option-btn likert-btn" data-value="4">4</button>
+          <button class="option-btn likert-btn" data-value="5">5</button>
+        </div>
+      </div>
+      <div class="question-card" data-construct="big5_n">
+        <div class="question-text">13. Je me sens souvent tendu(e) ou anxieux(se).</div>
+        <div class="options likert">
+          <button class="option-btn likert-btn" data-value="1">1</button>
+          <button class="option-btn likert-btn" data-value="2">2</button>
+          <button class="option-btn likert-btn" data-value="3">3</button>
+          <button class="option-btn likert-btn" data-value="4">4</button>
+          <button class="option-btn likert-btn" data-value="5">5</button>
+        </div>
+      </div>
+
+      <!-- MMPI (échelles cliniques) -->
+      <div class="question-card" data-construct="mmpi">
+        <div class="question-text">14. J’ai parfois des pensées étranges que les autres ne comprennent pas.</div>
+        <div class="options likert">
+          <button class="option-btn likert-btn" data-value="1">1</button>
+          <button class="option-btn likert-btn" data-value="2">2</button>
+          <button class="option-btn likert-btn" data-value="3">3</button>
+          <button class="option-btn likert-btn" data-value="4">4</button>
+          <button class="option-btn likert-btn" data-value="5">5</button>
+        </div>
+      </div>
+      <div class="question-card" data-construct="mmpi">
+        <div class="question-text">15. J’ai l’impression que les gens parlent de moi dans mon dos.</div>
+        <div class="options likert">
+          <button class="option-btn likert-btn" data-value="1">1</button>
+          <button class="option-btn likert-btn" data-value="2">2</button>
+          <button class="option-btn likert-btn" data-value="3">3</button>
+          <button class="option-btn likert-btn" data-value="4">4</button>
+          <button class="option-btn likert-btn" data-value="5">5</button>
+        </div>
+      </div>
+      <div class="question-card" data-construct="mmpi">
+        <div class="question-text">16. Parfois je perds le contrôle de mes actions.</div>
+        <div class="options likert">
+          <button class="option-btn likert-btn" data-value="1">1</button>
+          <button class="option-btn likert-btn" data-value="2">2</button>
+          <button class="option-btn likert-btn" data-value="3">3</button>
+          <button class="option-btn likert-btn" data-value="4">4</button>
+          <button class="option-btn likert-btn" data-value="5">5</button>
+        </div>
+      </div>
+
+      <!-- WAIS / WISC (raisonnement verbal) -->
+      <div class="question-card" data-construct="wais">
+        <div class="question-text">17. Je trouve facilement des points communs entre des choses différentes.</div>
+        <div class="options likert">
+          <button class="option-btn likert-btn" data-value="1">1</button>
+          <button class="option-btn likert-btn" data-value="2">2</button>
+          <button class="option-btn likert-btn" data-value="3">3</button>
+          <button class="option-btn likert-btn" data-value="4">4</button>
+          <button class="option-btn likert-btn" data-value="5">5</button>
+        </div>
+      </div>
+      <div class="question-card" data-construct="wais">
+        <div class="question-text">18. Je comprends rapidement les analogies.</div>
+        <div class="options likert">
+          <button class="option-btn likert-btn" data-value="1">1</button>
+          <button class="option-btn likert-btn" data-value="2">2</button>
+          <button class="option-btn likert-btn" data-value="3">3</button>
+          <button class="option-btn likert-btn" data-value="4">4</button>
+          <button class="option-btn likert-btn" data-value="5">5</button>
+        </div>
+      </div>
+
+      <!-- Stroop (inhibition) -->
+      <div class="question-card" data-construct="stroop">
+        <div class="question-text">19. J’arrive facilement à ignorer une information distrayante.</div>
+        <div class="options likert">
+          <button class="option-btn likert-btn" data-value="1">1</button>
+          <button class="option-btn likert-btn" data-value="2">2</button>
+          <button class="option-btn likert-btn" data-value="3">3</button>
+          <button class="option-btn likert-btn" data-value="4">4</button>
+          <button class="option-btn likert-btn" data-value="5">5</button>
+        </div>
+      </div>
+      <div class="question-card" data-construct="stroop">
+        <div class="question-text">20. Je ne me laisse pas perturber par des contradictions.</div>
+        <div class="options likert">
+          <button class="option-btn likert-btn" data-value="1">1</button>
+          <button class="option-btn likert-btn" data-value="2">2</button>
+          <button class="option-btn likert-btn" data-value="3">3</button>
+          <button class="option-btn likert-btn" data-value="4">4</button>
+          <button class="option-btn likert-btn" data-value="5">5</button>
+        </div>
+      </div>
+
+      <!-- TMT (flexibilité cognitive) -->
+      <div class="question-card" data-construct="tmt">
+        <div class="question-text">21. Je passe facilement d’une tâche à une autre.</div>
+        <div class="options likert">
+          <button class="option-btn likert-btn" data-value="1">1</button>
+          <button class="option-btn likert-btn" data-value="2">2</button>
+          <button class="option-btn likert-btn" data-value="3">3</button>
+          <button class="option-btn likert-btn" data-value="4">4</button>
+          <button class="option-btn likert-btn" data-value="5">5</button>
+        </div>
+      </div>
+      <div class="question-card" data-construct="tmt">
+        <div class="question-text">22. Je me repère bien dans des séquences complexes.</div>
+        <div class="options likert">
+          <button class="option-btn likert-btn" data-value="1">1</button>
+          <button class="option-btn likert-btn" data-value="2">2</button>
+          <button class="option-btn likert-btn" data-value="3">3</button>
+          <button class="option-btn likert-btn" data-value="4">4</button>
+          <button class="option-btn likert-btn" data-value="5">5</button>
+        </div>
+      </div>
+
+      <!-- N-back (mémoire de travail) -->
+      <div class="question-card" data-construct="nback">
+        <div class="question-text">23. Je retiens facilement les informations récentes.</div>
+        <div class="options likert">
+          <button class="option-btn likert-btn" data-value="1">1</button>
+          <button class="option-btn likert-btn" data-value="2">2</button>
+          <button class="option-btn likert-btn" data-value="3">3</button>
+          <button class="option-btn likert-btn" data-value="4">4</button>
+          <button class="option-btn likert-btn" data-value="5">5</button>
+        </div>
+      </div>
+      <div class="question-card" data-construct="nback">
+        <div class="question-text">24. Je peux me souvenir d’une série d’éléments tout en en traitant de nouveaux.</div>
+        <div class="options likert">
+          <button class="option-btn likert-btn" data-value="1">1</button>
+          <button class="option-btn likert-btn" data-value="2">2</button>
+          <button class="option-btn likert-btn" data-value="3">3</button>
+          <button class="option-btn likert-btn" data-value="4">4</button>
+          <button class="option-btn likert-btn" data-value="5">5</button>
+        </div>
+      </div>
+
+      <!-- EQ (empathie) -->
+      <div class="question-card" data-construct="eq">
+        <div class="question-text">25. Je suis sensible aux sentiments des autres.</div>
+        <div class="options likert">
+          <button class="option-btn likert-btn" data-value="1">1</button>
+          <button class="option-btn likert-btn" data-value="2">2</button>
+          <button class="option-btn likert-btn" data-value="3">3</button>
+          <button class="option-btn likert-btn" data-value="4">4</button>
+          <button class="option-btn likert-btn" data-value="5">5</button>
+        </div>
+      </div>
+      <div class="question-card" data-construct="eq">
+        <div class="question-text">26. Je trouve facile de comprendre ce qu’une personne ressent.</div>
+        <div class="options likert">
+          <button class="option-btn likert-btn" data-value="1">1</button>
+          <button class="option-btn likert-btn" data-value="2">2</button>
+          <button class="option-btn likert-btn" data-value="3">3</button>
+          <button class="option-btn likert-btn" data-value="4">4</button>
+          <button class="option-btn likert-btn" data-value="5">5</button>
+        </div>
+      </div>
+      <div class="question-card" data-construct="eq">
+        <div class="question-text">27. Les amis me confient souvent leurs problèmes.</div>
+        <div class="options likert">
+          <button class="option-btn likert-btn" data-value="1">1</button>
+          <button class="option-btn likert-btn" data-value="2">2</button>
+          <button class="option-btn likert-btn" data-value="3">3</button>
+          <button class="option-btn likert-btn" data-value="4">4</button>
+          <button class="option-btn likert-btn" data-value="5">5</button>
+        </div>
+      </div>
+
+      <!-- TAS-20 (alexithymie) -->
+      <div class="question-card" data-construct="tas20">
+        <div class="question-text">28. Je suis souvent confus(e) face à mes émotions.</div>
+        <div class="options likert">
+          <button class="option-btn likert-btn" data-value="1">1</button>
+          <button class="option-btn likert-btn" data-value="2">2</button>
+          <button class="option-btn likert-btn" data-value="3">3</button>
+          <button class="option-btn likert-btn" data-value="4">4</button>
+          <button class="option-btn likert-btn" data-value="5">5</button>
+        </div>
+      </div>
+      <div class="question-card" data-construct="tas20">
+        <div class="question-text">29. Il m’est difficile de décrire ce que je ressens.</div>
+        <div class="options likert">
+          <button class="option-btn likert-btn" data-value="1">1</button>
+          <button class="option-btn likert-btn" data-value="2">2</button>
+          <button class="option-btn likert-btn" data-value="3">3</button>
+          <button class="option-btn likert-btn" data-value="4">4</button>
+          <button class="option-btn likert-btn" data-value="5">5</button>
+        </div>
+      </div>
+      <div class="question-card" data-construct="tas20">
+        <div class="question-text">30. Je préfère qu’on ne me parle pas de mes sentiments.</div>
+        <div class="options likert">
+          <button class="option-btn likert-btn" data-value="1">1</button>
+          <button class="option-btn likert-btn" data-value="2">2</button>
+          <button class="option-btn likert-btn" data-value="3">3</button>
+          <button class="option-btn likert-btn" data-value="4">4</button>
+          <button class="option-btn likert-btn" data-value="5">5</button>
+        </div>
+      </div>
+
+      <!-- Facial emotion recognition -->
+      <div class="question-card" data-construct="facial">
+        <div class="question-text">31. Je reconnais facilement les émotions sur les visages.</div>
+        <div class="options likert">
+          <button class="option-btn likert-btn" data-value="1">1</button>
+          <button class="option-btn likert-btn" data-value="2">2</button>
+          <button class="option-btn likert-btn" data-value="3">3</button>
+          <button class="option-btn likert-btn" data-value="4">4</button>
+          <button class="option-btn likert-btn" data-value="5">5</button>
+        </div>
+      </div>
+      <div class="question-card" data-construct="facial">
+        <div class="question-text">32. Je perçois tout de suite si quelqu’un est en colère ou joyeux.</div>
+        <div class="options likert">
+          <button class="option-btn likert-btn" data-value="1">1</button>
+          <button class="option-btn likert-btn" data-value="2">2</button>
+          <button class="option-btn likert-btn" data-value="3">3</button>
+          <button class="option-btn likert-btn" data-value="4">4</button>
+          <button class="option-btn likert-btn" data-value="5">5</button>
+        </div>
+      </div>
+
+      <!-- Go/NoGo (impulsivité) -->
+      <div class="question-card" data-construct="gonogo">
+        <div class="question-text">33. J’agis souvent sans réfléchir.</div>
+        <div class="options likert">
+          <button class="option-btn likert-btn" data-value="1">1</button>
+          <button class="option-btn likert-btn" data-value="2">2</button>
+          <button class="option-btn likert-btn" data-value="3">3</button>
+          <button class="option-btn likert-btn" data-value="4">4</button>
+          <button class="option-btn likert-btn" data-value="5">5</button>
+        </div>
+      </div>
+      <div class="question-card" data-construct="gonogo">
+        <div class="question-text">34. Il m’arrive de répondre trop vite sans attendre la consigne.</div>
+        <div class="options likert">
+          <button class="option-btn likert-btn" data-value="1">1</button>
+          <button class="option-btn likert-btn" data-value="2">2</button>
+          <button class="option-btn likert-btn" data-value="3">3</button>
+          <button class="option-btn likert-btn" data-value="4">4</button>
+          <button class="option-btn likert-btn" data-value="5">5</button>
+        </div>
+      </div>
+
+      <!-- Iowa (décision sous incertitude) -->
+      <div class="question-card" data-construct="iowa">
+        <div class="question-text">35. Je fais confiance à mon intuition pour prendre des décisions risquées.</div>
+        <div class="options likert">
+          <button class="option-btn likert-btn" data-value="1">1</button>
+          <button class="option-btn likert-btn" data-value="2">2</button>
+          <button class="option-btn likert-btn" data-value="3">3</button>
+          <button class="option-btn likert-btn" data-value="4">4</button>
+          <button class="option-btn likert-btn" data-value="5">5</button>
+        </div>
+      </div>
+      <div class="question-card" data-construct="iowa">
+        <div class="question-text">36. J’apprends vite quels choix sont avantageux à long terme.</div>
+        <div class="options likert">
+          <button class="option-btn likert-btn" data-value="1">1</button>
+          <button class="option-btn likert-btn" data-value="2">2</button>
+          <button class="option-btn likert-btn" data-value="3">3</button>
+          <button class="option-btn likert-btn" data-value="4">4</button>
+          <button class="option-btn likert-btn" data-value="5">5</button>
+        </div>
+      </div>
+
+      <!-- Delay discounting -->
+      <div class="question-card" data-construct="delay">
+        <div class="question-text">37. Je préfère attendre pour obtenir une plus grande récompense.</div>
+        <div class="options likert">
+          <button class="option-btn likert-btn" data-value="1">1</button>
+          <button class="option-btn likert-btn" data-value="2">2</button>
+          <button class="option-btn likert-btn" data-value="3">3</button>
+          <button class="option-btn likert-btn" data-value="4">4</button>
+          <button class="option-btn likert-btn" data-value="5">5</button>
+        </div>
+      </div>
+      <div class="question-card" data-construct="delay">
+        <div class="question-text">38. Je résiste facilement à la tentation d’une récompense immédiate.</div>
+        <div class="options likert">
+          <button class="option-btn likert-btn" data-value="1">1</button>
+          <button class="option-btn likert-btn" data-value="2">2</button>
+          <button class="option-btn likert-btn" data-value="3">3</button>
+          <button class="option-btn likert-btn" data-value="4">4</button>
+          <button class="option-btn likert-btn" data-value="5">5</button>
+        </div>
+      </div>
+
+      <!-- BDI (dépression) -->
+      <div class="question-card" data-construct="bdi">
+        <div class="question-text">39. Je me sens souvent triste sans raison particulière.</div>
+        <div class="options likert">
+          <button class="option-btn likert-btn" data-value="1">1</button>
+          <button class="option-btn likert-btn" data-value="2">2</button>
+          <button class="option-btn likert-btn" data-value="3">3</button>
+          <button class="option-btn likert-btn" data-value="4">4</button>
+          <button class="option-btn likert-btn" data-value="5">5</button>
+        </div>
+      </div>
+      <div class="question-card" data-construct="bdi">
+        <div class="question-text">40. Je n’ai pas d’espoir en l’avenir.</div>
+        <div class="options likert">
+          <button class="option-btn likert-btn" data-value="1">1</button>
+          <button class="option-btn likert-btn" data-value="2">2</button>
+          <button class="option-btn likert-btn" data-value="3">3</button>
+          <button class="option-btn likert-btn" data-value="4">4</button>
+          <button class="option-btn likert-btn" data-value="5">5</button>
+        </div>
+      </div>
+      <div class="question-card" data-construct="bdi">
+        <div class="question-text">41. Rien ne me fait vraiment plaisir.</div>
+        <div class="options likert">
+          <button class="option-btn likert-btn" data-value="1">1</button>
+          <button class="option-btn likert-btn" data-value="2">2</button>
+          <button class="option-btn likert-btn" data-value="3">3</button>
+          <button class="option-btn likert-btn" data-value="4">4</button>
+          <button class="option-btn likert-btn" data-value="5">5</button>
+        </div>
+      </div>
+
+      <!-- STAI (anxiété) -->
+      <div class="question-card" data-construct="stai">
+        <div class="question-text">42. Je me sens tendu(e) ou stressé(e) la plupart du temps.</div>
+        <div class="options likert">
+          <button class="option-btn likert-btn" data-value="1">1</button>
+          <button class="option-btn likert-btn" data-value="2">2</button>
+          <button class="option-btn likert-btn" data-value="3">3</button>
+          <button class="option-btn likert-btn" data-value="4">4</button>
+          <button class="option-btn likert-btn" data-value="5">5</button>
+        </div>
+      </div>
+      <div class="question-card" data-construct="stai">
+        <div class="question-text">43. Je m’inquiète souvent de choses insignifiantes.</div>
+        <div class="options likert">
+          <button class="option-btn likert-btn" data-value="1">1</button>
+          <button class="option-btn likert-btn" data-value="2">2</button>
+          <button class="option-btn likert-btn" data-value="3">3</button>
+          <button class="option-btn likert-btn" data-value="4">4</button>
+          <button class="option-btn likert-btn" data-value="5">5</button>
+        </div>
+      </div>
+      <div class="question-card" data-construct="stai">
+        <div class="question-text">44. Je me sens calme et détendu(e) (inversé).</div>
+        <div class="options likert">
+          <button class="option-btn likert-btn" data-value="1">5</button>
+          <button class="option-btn likert-btn" data-value="2">4</button>
+          <button class="option-btn likert-btn" data-value="3">3</button>
+          <button class="option-btn likert-btn" data-value="4">2</button>
+          <button class="option-btn likert-btn" data-value="5">1</button>
+        </div>
+      </div>
+
+      <!-- PCL5 (trauma) -->
+      <div class="question-card" data-construct="pcl5">
+        <div class="question-text">45. Des souvenirs répétés et gênants d’un événement passé me perturbent.</div>
+        <div class="options likert">
+          <button class="option-btn likert-btn" data-value="1">1</button>
+          <button class="option-btn likert-btn" data-value="2">2</button>
+          <button class="option-btn likert-btn" data-value="3">3</button>
+          <button class="option-btn likert-btn" data-value="4">4</button>
+          <button class="option-btn likert-btn" data-value="5">5</button>
+        </div>
+      </div>
+      <div class="question-card" data-construct="pcl5">
+        <div class="question-text">46. J’évite les situations qui me rappellent un événement traumatique.</div>
+        <div class="options likert">
+          <button class="option-btn likert-btn" data-value="1">1</button>
+          <button class="option-btn likert-btn" data-value="2">2</button>
+          <button class="option-btn likert-btn" data-value="3">3</button>
+          <button class="option-btn likert-btn" data-value="4">4</button>
+          <button class="option-btn likert-btn" data-value="5">5</button>
+        </div>
+      </div>
+      <div class="question-card" data-construct="pcl5">
+        <div class="question-text">47. J’ai des difficultés de sommeil à cause de pensées envahissantes.</div>
+        <div class="options likert">
+          <button class="option-btn likert-btn" data-value="1">1</button>
+          <button class="option-btn likert-btn" data-value="2">2</button>
+          <button class="option-btn likert-btn" data-value="3">3</button>
+          <button class="option-btn likert-btn" data-value="4">4</button>
+          <button class="option-btn likert-btn" data-value="5">5</button>
+        </div>
+      </div>
+
+      <!-- ========== PARTIE 2 : TEST MRBEAST (10 questions) ========= -->
+      <div class="section-title">🚀 Test « MrBeast » – Curiosité, ambition, obsession</div>
+
+      <!-- Q1 -->
+      <div class="question-card" data-construct="mrbeast">
+        <div class="question-text">1. Quand tu as du temps libre, tu préfères :</div>
+        <div class="options">
+          <button type="button" class="option-btn" data-value="A">A) Regarder des vidéos TikTok au hasard</button>
+          <button type="button" class="option-btn" data-value="B">B) Regarder une série</button>
+          <button type="button" class="option-btn" data-value="C">C) Regarder des documentaires / apprendre quelque chose</button>
+          <button type="button" class="option-btn" data-value="D">D) Travailler sur un projet perso ou apprendre une nouvelle compétence</button>
+        </div>
+      </div>
+      <!-- Q2 -->
+      <div class="question-card" data-construct="mrbeast">
+        <div class="question-text">2. Tu te décrirais comme :</div>
+        <div class="options">
+          <button class="option-btn" data-value="A">A) Chill, je vis au jour le jour</button>
+          <button class="option-btn" data-value="B">B) Sociable et fun</button>
+          <button class="option-btn" data-value="C">C) Curieux(se) et réfléchi(e)</button>
+          <button class="option-btn" data-value="D">D) Obsédé(e) par mes objectifs</button>
+        </div>
+      </div>
+      <!-- Q3 -->
+      <div class="question-card" data-construct="mrbeast">
+        <div class="question-text">3. Est-ce que tu as un objectif clair dans ta vie ?</div>
+        <div class="options">
+          <button class="option-btn" data-value="A">A) Pas vraiment</button>
+          <button class="option-btn" data-value="B">B) Oui mais j’y pense pas trop</button>
+          <button class="option-btn" data-value="C">C) Oui et j’y travaille doucement</button>
+          <button class="option-btn" data-value="D">D) Oui et j’y pense tous les jours</button>
+        </div>
+      </div>
+      <!-- Q4 -->
+      <div class="question-card" data-construct="mrbeast">
+        <div class="question-text">4. Si ton/ta partenaire travaille 12h par jour sur son projet, tu :</div>
+        <div class="options">
+          <button class="option-btn" data-value="A">A) Trouves ça excessif</button>
+          <button class="option-btn" data-value="B">B) Acceptes mais ça t’embête</button>
+          <button class="option-btn" data-value="C">C) Comprends et soutiens</button>
+          <button class="option-btn" data-value="D">D) L’aides ou travailles sur tes propres projets en parallèle</button>
+        </div>
+      </div>
+      <!-- Q5 -->
+      <div class="question-card" data-construct="mrbeast">
+        <div class="question-text">5. Une discussion idéale pour toi ressemble à :</div>
+        <div class="options">
+          <button class="option-btn" data-value="A">A) Gossip / drama</button>
+          <button class="option-btn" data-value="B">B) Parler des gens</button>
+          <button class="option-btn" data-value="C">C) Débattre d’idées intéressantes</button>
+          <button class="option-btn" data-value="D">D) Imaginer des projets fous et analyser le monde</button>
+        </div>
+      </div>
+      <!-- Q6 -->
+      <div class="question-card" data-construct="mrbeast">
+        <div class="question-text">6. Ton rapport à l’argent :</div>
+        <div class="options">
+          <button class="option-btn" data-value="A">A) Dépenser = plaisir</button>
+          <button class="option-btn" data-value="B">B) J’aime le confort</button>
+          <button class="option-btn" data-value="C">C) Je veux être stable</button>
+          <button class="option-btn" data-value="D">D) Je veux créer quelque chose d’énorme, l’argent est un outil</button>
+        </div>
+      </div>
+      <!-- Q7 -->
+      <div class="question-card" data-construct="mrbeast">
+        <div class="question-text">7. Si tu rencontres quelqu’un de célèbre :</div>
+        <div class="options">
+          <button class="option-btn" data-value="A">A) C’est stylé pour les réseaux</button>
+          <button class="option-btn" data-value="B">B) C’est impressionnant</button>
+          <button class="option-btn" data-value="C">C) Ça ne change rien</button>
+          <button class="option-btn" data-value="D">D) Je m’en fiche totalement, je regarde la personne</button>
+        </div>
+      </div>
+      <!-- Q8 -->
+      <div class="question-card" data-construct="mrbeast">
+        <div class="question-text">8. Est-ce que tu aimes apprendre ?</div>
+        <div class="options">
+          <button class="option-btn" data-value="A">A) Pas trop</button>
+          <button class="option-btn" data-value="B">B) Seulement si c’est fun</button>
+          <button class="option-btn" data-value="C">C) Oui, régulièrement</button>
+          <button class="option-btn" data-value="D">D) Oui, je suis presque obsessionnel(le)</button>
+        </div>
+      </div>
+      <!-- Q9 -->
+      <div class="question-card" data-construct="mrbeast">
+        <div class="question-text">9. As-tu un hobby sérieux ?</div>
+        <div class="options">
+          <button class="option-btn" data-value="A">A) Non</button>
+          <button class="option-btn" data-value="B">B) Juste pour passer le temps</button>
+          <button class="option-btn" data-value="C">C) Oui, j’y consacre du temps</button>
+          <button class="option-btn" data-value="D">D) Oui, je pourrais en faire ma carrière</button>
+        </div>
+      </div>
+      <!-- Q10 -->
+      <div class="question-card" data-construct="mrbeast">
+        <div class="question-text">10. Ton partenaire idéal est :</div>
+        <div class="options">
+          <button class="option-btn" data-value="A">A) Drôle et populaire</button>
+          <button class="option-btn" data-value="B">B) Stable et gentil</button>
+          <button class="option-btn" data-value="C">C) Intelligent et ambitieux</button>
+          <button class="option-btn" data-value="D">D) Mon/ma meilleur(e) ami(e) + partenaire de projets</button>
+        </div>
+      </div>
+    </form>
+
+    <!-- Bouton de calcul -->
+    <div class="submit-area">
+      <button id="calculerBtn" class="btn-calculer">📊 ANALYSER MON PROFIL</button>
+    </div>
+
+    <!-- DASHBOARD lettres (injecté par JS) -->
+    <div id="dashboardContainer" class="dashboard hidden"></div>
+
+    <!-- Résultat test MrBeast (interprétation simple) -->
+    <div id="mrbeastResult" class="interpretation-box hidden"></div>
+
+    <!-- Zone chercheur – code 1983 -->
     <div class="admin-panel">
-      <div style="font-weight: 620; color: #1b3843; margin-bottom: 16px;">ACCÈS CHERCHEUR</div>
+      <div style="font-weight: 600; color: #1a3a45; margin-bottom: 16px;">🧑‍🔬 ESPACE CHERCHEUR</div>
       <div class="code-row">
         <input type="password" id="codeSecret" placeholder="code" maxlength="4">
-        <button id="unlockBtn" class="btn" style="background:#1b3843; color:white;">Déverrouiller</button>
+        <button id="unlockBtn" class="btn btn-dark">Déverrouiller</button>
         <button id="resetBtn" class="btn">Réinitialiser</button>
       </div>
-      <div id="adminInterp" class="interp-box hidden"></div>
+      <div id="interpretationProfonde" class="interpretation-box hidden"></div>
     </div>
-    <div class="footer">BART · SVO · RAVEN · RME · BIG5 · MMPI · WAIS · WISC · STROOP · TMT · N-BACK · EQ · TAS20 · FACIAL · GONOGO · IOWA · DELAY · BDI · STAI · PCL5</div>
+
+    <div class="footer">
+      Questionnaire basé sur BART · SVO · RAVEN · RME · BIG5 · MMPI · WAIS · WISC · STROOP · TMT · N-BACK · EQ · TAS20 · FACIAL · GONOGO · IOWA · DELAY · BDI · STAI · PCL5 · MrBeast
+    </div>
   </div>
 
   <script>
-    // ------------------------------------------------------------
-    //  ÉTAT CENTRAL – 22 TESTS, FLUX LINÉAIRE, SCORES RÉELS
-    // ------------------------------------------------------------
-    const State = {
-      phase: 0,
-      // BART
-      bart: {
-        pumpsHistory: [],
-        done: 0,
-        active: false,
-        pumpsTemp: 0,
-        tempMoney: 0,
-        explosion: 0
-      },
-      // SVO
-      svo: {
-        responses: [],
-        idx: 0
-      },
-      // RAVEN
-      raven: {
-        score: 0,
-        idx: 0,
-        maxItems: 4
-      },
-      // RME
-      rme: {
-        score: 0,
-        idx: 0,
-        maxItems: 6
-      },
-      // BIG FIVE
-      big5: {
-        reponses: [],
-        idx: 0,
-        maxItems: 5
-      },
-      // MMPI
-      mmpi: {
-        reponses: [],
-        idx: 0,
-        maxItems: 6
-      },
-      // WAIS
-      wais: {
-        score: 0,
-        idx: 0,
-        maxItems: 2
-      },
-      // WISC
-      wisc: {
-        score: 0,
-        idx: 0,
-        maxItems: 2
-      },
-      // STROOP
-      stroop: {
-        score: 0,
-        idx: 0,
-        maxItems: 4
-      },
-      // TMT
-      tmt: {
-        clicks: [],
-        order: [1, 2, 3, 4, 5],
-        current: 0,
-        errors: 0
-      },
-      // NBACK
-      nback: {
-        score: 0,
-        idx: 0,
-        sequence: ['A', 'B', 'C', 'D', 'A', 'B', 'E', 'C'],
-        targetPos: [4, 7], // positions où la lettre est identique à n-2 (n=2)
-        currentIdx: 0
-      },
-      // EQ
-      eq: {
-        reponses: [],
-        idx: 0,
-        maxItems: 4
-      },
-      // TAS20
-      tas20: {
-        reponses: [],
-        idx: 0,
-        maxItems: 3
-      },
-      // FACIAL EMOTION
-      facial: {
-        score: 0,
-        idx: 0,
-        maxItems: 4
-      },
-      // GO/NOGO
-      gonogo: {
-        score: 0,
-        idx: 0,
-        stimuli: ['X', 'O', 'X', 'O', 'Y', 'X'],
-        noGoIndex: [4] // Y est No-Go
-      },
-      // IOWA
-      iowa: {
-        score: 0,
-        idx: 0,
-        maxItems: 5,
-        decks: ['A', 'B', 'C', 'D']
-      },
-      // DELAY DISCOUNTING
-      delay: {
-        reponses: [],
-        idx: 0,
-        maxItems: 2
-      },
-      // BDI
-      bdi: {
-        reponses: [],
-        idx: 0,
-        maxItems: 4
-      },
-      // STAI
-      stai: {
-        reponses: [],
-        idx: 0,
-        maxItems: 4
-      },
-      // PCL5
-      pcl5: {
-        reponses: [],
-        idx: 0,
-        maxItems: 4
-      }
-    };
-
-    // ------------------------------------------------------------
-    //  LISTE DES 22 TESTS – ORDRE IMPOSÉ
-    // ------------------------------------------------------------
-    const PHASES = [
-      { id: 'bart', nom: 'BART – Prise de risque' },
-      { id: 'svo', nom: 'SVO – Orientation sociale' },
-      { id: 'raven', nom: 'Matrices de Raven' },
-      { id: 'rme', nom: 'Reading the Mind in the Eyes' },
-      { id: 'big5', nom: 'Big Five (OCEAN)' },
-      { id: 'mmpi', nom: 'MMPI – Inventaire de personnalité' },
-      { id: 'wais', nom: 'WAIS – Similitudes' },
-      { id: 'wisc', nom: 'WISC – Matrices' },
-      { id: 'stroop', nom: 'Stroop – Inhibition' },
-      { id: 'tmt', nom: 'Trail Making Test (TMT)' },
-      { id: 'nback', nom: 'N-back – Mémoire de travail' },
-      { id: 'eq', nom: 'Empathy Quotient' },
-      { id: 'tas20', nom: 'TAS-20 – Alexithymie' },
-      { id: 'facial', nom: 'Reconnaissance des émotions' },
-      { id: 'gonogo', nom: 'Go/No-Go – Impulsivité' },
-      { id: 'iowa', nom: 'Iowa Gambling Task' },
-      { id: 'delay', nom: 'Delay Discounting' },
-      { id: 'bdi', nom: 'Beck Depression Inventory' },
-      { id: 'stai', nom: 'STAI – Anxiété' },
-      { id: 'pcl5', nom: 'PCL-5 – Stress post-traumatique' }
-    ];
-
-    // Lettres attribuées (A à V)
-    const LETTRES = ['A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V'];
-
-    // ------------------------------------------------------------
-    //  STIMULI POUR CHAQUE TEST (représentatifs, non répétitifs)
-    // ------------------------------------------------------------
-
-    // ---- RAVEN - 4 matrices avec logique différente ----
-    const RAVEN_ITEMS = [
-      { matrice: ['◼', '◻', '◼', '◻', '◼', '◻', '◼', '◻', '❓'], options: ['◼', '◻', '◼', '◻'], correct: '◼' },
-      { matrice: ['2', '4', '6', '8', '10', '12', '14', '16', '❓'], options: ['18', '20', '17', '19'], correct: '18' },
-      { matrice: ['●', '◐', '○', '●', '◐', '○', '●', '◐', '❓'], options: ['○', '●', '◐', '◎'], correct: '○' },
-      { matrice: ['▲', '△', '▲', '△', '▲', '△', '▲', '△', '❓'], options: ['▲', '△', '◀', '▶'], correct: '▲' }
-    ];
-
-    // ---- RME - 6 paires d'yeux en SVG (expressions variées) ----
-    function getEyesSVG(expression) {
-      // Génère un SVG unique selon l'expression
-      const eyeSpacing = 80;
-      const eyeY = 50;
-      if (expression === 'confiant') return `<svg viewBox="0 0 200 100"><circle cx="60" cy="50" r="20" fill="white" stroke="#2f4f5e" stroke-width="2"/><circle cx="140" cy="50" r="20" fill="white" stroke="#2f4f5e" stroke-width="2"/><circle cx="65" cy="50" r="8" fill="#1a2e3b"/><circle cx="145" cy="50" r="8" fill="#1a2e3b"/><path d="M40 70 Q60 85, 80 70" stroke="#1a2e3b" fill="none" stroke-width="2"/><path d="M120 70 Q140 85, 160 70" stroke="#1a2e3b" fill="none" stroke-width="2"/></svg>`;
-      if (expression === 'sceptique') return `<svg viewBox="0 0 200 100"><circle cx="60" cy="50" r="20" fill="white" stroke="#2f4f5e" stroke-width="2"/><circle cx="140" cy="50" r="20" fill="white" stroke="#2f4f5e" stroke-width="2"/><circle cx="55" cy="55" r="6" fill="#1a2e3b"/><circle cx="135" cy="55" r="6" fill="#1a2e3b"/><path d="M30 40 L50 30" stroke="#1a2e3b" stroke-width="2"/><path d="M110 40 L130 30" stroke="#1a2e3b" stroke-width="2"/></svg>`;
-      if (expression === 'rêveur') return `<svg viewBox="0 0 200 100"><circle cx="60" cy="50" r="20" fill="white" stroke="#2f4f5e" stroke-width="2"/><circle cx="140" cy="50" r="20" fill="white" stroke="#2f4f5e" stroke-width="2"/><circle cx="70" cy="45" r="6" fill="#1a2e3b"/><circle cx="150" cy="45" r="6" fill="#1a2e3b"/><path d="M40 80 Q60 95, 80 80" stroke="#1a2e3b" fill="none" stroke-width="2"/><path d="M120 80 Q140 95, 160 80" stroke="#1a2e3b" fill="none" stroke-width="2"/></svg>`;
-      if (expression === 'préoccupé') return `<svg viewBox="0 0 200 100"><circle cx="60" cy="50" r="20" fill="white" stroke="#2f4f5e" stroke-width="2"/><circle cx="140" cy="50" r="20" fill="white" stroke="#2f4f5e" stroke-width="2"/><circle cx="60" cy="55" r="6" fill="#1a2e3b"/><circle cx="140" cy="55" r="6" fill="#1a2e3b"/><path d="M40 30 L60 40" stroke="#1a2e3b" stroke-width="2"/><path d="M120 30 L140 40" stroke="#1a2e3b" stroke-width="2"/></svg>`;
-      if (expression === 'relaxé') return `<svg viewBox="0 0 200 100"><circle cx="60" cy="50" r="20" fill="white" stroke="#2f4f5e" stroke-width="2"/><circle cx="140" cy="50" r="20" fill="white" stroke="#2f4f5e" stroke-width="2"/><circle cx="65" cy="48" r="7" fill="#1a2e3b"/><circle cx="145" cy="48" r="7" fill="#1a2e3b"/><path d="M30 70 L80 70" stroke="#1a2e3b" stroke-width="2"/><path d="M110 70 L160 70" stroke="#1a2e3b" stroke-width="2"/></svg>`;
-      if (expression === 'dubitatif') return `<svg viewBox="0 0 200 100"><circle cx="60" cy="50" r="20" fill="white" stroke="#2f4f5e" stroke-width="2"/><circle cx="140" cy="50" r="20" fill="white" stroke="#2f4f5e" stroke-width="2"/><circle cx="55" cy="52" r="5" fill="#1a2e3b"/><circle cx="135" cy="52" r="5" fill="#1a2e3b"/><path d="M30 35 L50 45" stroke="#1a2e3b" stroke-width="2"/><path d="M110 35 L130 45" stroke="#1a2e3b" stroke-width="2"/></svg>`;
-      return '';
-    }
-
-    const RME_ITEMS = [
-      { expression: 'confiant', options: ['hostile', 'paniqué', 'amusé', 'confiant'], correct: 'confiant' },
-      { expression: 'sceptique', options: ['sceptique', 'jaloux', 'affectueux', 'terrifié'], correct: 'sceptique' },
-      { expression: 'rêveur', options: ['désireux', 'arrogant', 'gêné', 'rêveur'], correct: 'rêveur' },
-      { expression: 'préoccupé', options: ['irrité', 'triste', 'préoccupé', 'amical'], correct: 'préoccupé' },
-      { expression: 'relaxé', options: ['relaxé', 'menaçant', 'surpris', 'fier'], correct: 'relaxé' },
-      { expression: 'dubitatif', options: ['dubitatif', 'en colère', 'reconnaissant', 'affligé'], correct: 'dubitatif' }
-    ];
-
-    // ---- SVO - 6 items ----
-    const SVO_ITEMS = [
-      { choixA: 'Vous 85€ / Autre 85€', choixB: 'Vous 100€ / Autre 50€', prosocial: 0 },
-      { choixA: 'Vous 85€ / Autre 85€', choixB: 'Vous 95€ / Autre 15€', prosocial: 0 },
-      { choixA: 'Vous 60€ / Autre 50€', choixB: 'Vous 50€ / Autre 100€', prosocial: 1 },
-      { choixA: 'Vous 75€ / Autre 65€', choixB: 'Vous 90€ / Autre 30€', prosocial: 0 },
-      { choixA: 'Vous 45€ / Autre 80€', choixB: 'Vous 70€ / Autre 70€', prosocial: 1 },
-      { choixA: 'Vous 100€ / Autre 20€', choixB: 'Vous 85€ / Autre 85€', prosocial: 1 }
-    ];
-
-    // ---- BIG FIVE - 5 items ----
-    const BIG5_ITEMS = [
-      'Je suis curieux(se) de découvrir de nouvelles choses.',
-      'Je termine mon travail à temps.',
-      'Je suis à l’aise dans les situations sociales.',
-      'Je fais confiance aux autres.',
-      'Je ressens souvent du stress.'
-    ];
-
-    // ---- MMPI (6 items inspirés d'échelles cliniques) ----
-    const MMPI_ITEMS = [
-      'Je me sens souvent triste sans raison.',
-      'On parle de moi dans mon dos.',
-      'J’ai des pensées étranges que personne ne comprend.',
-      'Je suis rarement fatigué(e).',
-      'Parfois, je perds le contrôle de mes actions.',
-      'Je n’ai pas confiance en moi.'
-    ];
-
-    // ---- WAIS (similitudes) ----
-    const WAIS_ITEMS = [
-      { question: 'En quoi une pomme et une banane sont-elles semblables ?', options: ['Ce sont des fruits', 'Elles sont rondes', 'Elles sont jaunes', 'Elles ont des pépins'], correct: 0 },
-      { question: 'En quoi un train et un avion sont-ils semblables ?', options: ['Ce sont des moyens de transport', 'Ils ont des ailes', 'Ils roulent', 'Ils sont rapides'], correct: 0 }
-    ];
-
-    // ---- WISC (matrices) ----
-    const WISC_ITEMS = [
-      { matrice: ['★', '☆', '★', '☆', '★', '☆', '★', '☆', '❓'], options: ['★', '☆', '☀', '☾'], correct: '★' },
-      { matrice: ['1', '2', '3', '1', '2', '3', '1', '2', '❓'], options: ['1', '2', '3', '4'], correct: '3' }
-    ];
-
-    // ---- STROOP ----
-    const STROOP_ITEMS = [
-      { mot: 'ROUGE', couleur: 'blue', bonne: 'bleu' },
-      { mot: 'VERT', couleur: 'red', bonne: 'rouge' },
-      { mot: 'BLEU', couleur: 'green', bonne: 'vert' },
-      { mot: 'JAUNE', couleur: 'purple', bonne: 'violet' }
-    ];
-
-    // ---- EQ (Empathy Quotient) ----
-    const EQ_ITEMS = [
-      'Je suis sensible aux sentiments des autres.',
-      'Je trouve facile de comprendre ce qu’une personne ressent.',
-      'Les amis me confient leurs problèmes.',
-      'Je me sens concerné(e) par le malheur des autres.'
-    ];
-
-    // ---- TAS-20 ----
-    const TAS20_ITEMS = [
-      'Je suis souvent confus(e) face à mes émotions.',
-      'Il m’est difficile de décrire ce que je ressens.',
-      'Je préfère ne pas parler de mes sentiments.'
-    ];
-
-    // ---- FACIAL EMOTION RECOGNITION - 4 visages SVG ----
-    function getFaceSVG(emotion) {
-      if (emotion === 'joie') return `<svg viewBox="0 0 100 100"><circle cx="50" cy="50" r="40" fill="#ffe0b5"/><circle cx="30" cy="40" r="5" fill="black"/><circle cx="70" cy="40" r="5" fill="black"/><path d="M30 60 Q50 80, 70 60" stroke="black" stroke-width="3" fill="none"/></svg>`;
-      if (emotion === 'tristesse') return `<svg viewBox="0 0 100 100"><circle cx="50" cy="50" r="40" fill="#ffe0b5"/><circle cx="30" cy="40" r="5" fill="black"/><circle cx="70" cy="40" r="5" fill="black"/><path d="M30 70 Q50 55, 70 70" stroke="black" stroke-width="3" fill="none"/></svg>`;
-      if (emotion === 'colère') return `<svg viewBox="0 0 100 100"><circle cx="50" cy="50" r="40" fill="#ffe0b5"/><circle cx="30" cy="40" r="5" fill="black"/><circle cx="70" cy="40" r="5" fill="black"/><path d="M30 55 L40 65 L60 65 L70 55" stroke="black" stroke-width="3" fill="none"/></svg>`;
-      if (emotion === 'peur') return `<svg viewBox="0 0 100 100"><circle cx="50" cy="50" r="40" fill="#ffe0b5"/><circle cx="30" cy="40" r="5" fill="black"/><circle cx="70" cy="40" r="5" fill="black"/><circle cx="50" cy="65" r="5" fill="black"/></svg>`;
-      return '';
-    }
-
-    const FACIAL_ITEMS = [
-      { emotion: 'joie', options: ['joie', 'tristesse', 'colère', 'peur'], correct: 'joie' },
-      { emotion: 'tristesse', options: ['joie', 'tristesse', 'colère', 'peur'], correct: 'tristesse' },
-      { emotion: 'colère', options: ['joie', 'tristesse', 'colère', 'peur'], correct: 'colère' },
-      { emotion: 'peur', options: ['joie', 'tristesse', 'colère', 'peur'], correct: 'peur' }
-    ];
-
-    // ---- IOWA (gains/pertes simplifiés) ----
-    const IOWA_DECKS = {
-      A: { gain: 100, perte: 150 },
-      B: { gain: 100, perte: 0 },
-      C: { gain: 50, perte: 25 },
-      D: { gain: 50, perte: 0 }
-    };
-
-    // ---- DELAY DISCOUNTING ----
-    const DELAY_ITEMS = [
-      { choix1: '10€ maintenant', choix2: '20€ dans 1 semaine' },
-      { choix1: '20€ maintenant', choix2: '50€ dans 2 semaines' }
-    ];
-
-    // ---- BDI ----
-    const BDI_ITEMS = [
-      { question: 'Tristesse', options: ['Je ne me sens pas triste.', 'Je me sens triste.', 'Je suis tout le temps triste.', 'Je suis si triste que je ne peux pas le supporter.'] },
-      { question: 'Pessimisme', options: ['Je ne suis pas découragé(e).', 'Je me sens découragé(e).', 'Je pense que je n’arriverai jamais à m’en sortir.', 'Je pense que tout est sans espoir.'] },
-      { question: 'Échec', options: ['Je n’ai pas l’impression d’avoir échoué.', 'J’ai échoué plus que je n’aurais dû.', 'J’ai beaucoup échoué.', 'Je suis un(e) échec complet.'] },
-      { question: 'Insatisfaction', options: ['Je suis satisfait(e).', 'Je ne suis pas satisfait(e).', 'Rien ne me satisfait.', 'Tout me déplaît.'] }
-    ];
-
-    // ---- STAI (état) ----
-    const STAI_ITEMS = [
-      { question: 'Je me sens calme.', inversed: true },
-      { question: 'Je suis tendu(e).', inversed: false },
-      { question: 'Je me sens inquiet(ète).', inversed: false },
-      { question: 'Je suis détendu(e).', inversed: true }
-    ];
-
-    // ---- PCL-5 ----
-    const PCL5_ITEMS = [
-      'Souvenirs répétés et gênants de l’événement.',
-      'Évitement des rappels de l’événement.',
-      'Difficultés de sommeil.',
-      'Irritabilité ou colère.'
-    ];
-
-    // ------------------------------------------------------------
-    //  RENDU DU TEST COURANT
-    // ------------------------------------------------------------
-    function renderPhase() {
-      const panel = document.getElementById('testPanel');
-      const phaseId = PHASES[State.phase]?.id;
-      document.getElementById('phaseLabel').innerText = `Test ${State.phase+1}/${PHASES.length}`;
-
-      switch (phaseId) {
-        case 'bart': panel.innerHTML = renderBART(); break;
-        case 'svo': panel.innerHTML = renderSVO(); break;
-        case 'raven': panel.innerHTML = renderRAVEN(); break;
-        case 'rme': panel.innerHTML = renderRME(); break;
-        case 'big5': panel.innerHTML = renderBIG5(); break;
-        case 'mmpi': panel.innerHTML = renderMMPI(); break;
-        case 'wais': panel.innerHTML = renderWAIS(); break;
-        case 'wisc': panel.innerHTML = renderWISC(); break;
-        case 'stroop': panel.innerHTML = renderSTROOP(); break;
-        case 'tmt': panel.innerHTML = renderTMT(); break;
-        case 'nback': panel.innerHTML = renderNBACK(); break;
-        case 'eq': panel.innerHTML = renderEQ(); break;
-        case 'tas20': panel.innerHTML = renderTAS20(); break;
-        case 'facial': panel.innerHTML = renderFACIAL(); break;
-        case 'gonogo': panel.innerHTML = renderGONOGO(); break;
-        case 'iowa': panel.innerHTML = renderIOWA(); break;
-        case 'delay': panel.innerHTML = renderDELAY(); break;
-        case 'bdi': panel.innerHTML = renderBDI(); break;
-        case 'stai': panel.innerHTML = renderSTAI(); break;
-        case 'pcl5': panel.innerHTML = renderPCL5(); break;
-        default: panel.innerHTML = '<p style="text-align:center;">Fin de la batterie. Merci.</p>';
-      }
-      updateDashboard();
-      attachEvents(phaseId);
-    }
-
-    // ------------------------------------------------------------
-    //  FONCTIONS DE RENDU (chaque test)
-    // ------------------------------------------------------------
-
-    // ---- BART ----
-    function renderBART() {
-      if (State.bart.done >= 30) { 
-        State.phase++; 
-        renderPhase(); 
-        return ''; 
-      }
-      if (!State.bart.active) {
-        State.bart.active = true;
-        State.bart.pumpsTemp = 0;
-        State.bart.tempMoney = 0;
-        State.bart.explosion = Math.floor(Math.random() * 15) + 8; // 8-22
-      }
-      return `
-        <div class="test-title">BART – Prise de risque</div>
-        <div class="instruction">🎈 Gonflez le ballon (chaque pompe +5 points). Mais il peut éclater ! Cliquez "Collecter" pour sécuriser vos points. Essayez de gagner le maximum.</div>
-        <div class="balloon-area">
-          <div class="balloon-svg">
-            <svg width="140" height="160" viewBox="0 0 100 120">
-              <circle cx="50" cy="50" r="${28 + State.bart.pumpsTemp*1.2}" fill="#bf6a6a" stroke="#5a3a3a" stroke-width="2.5"/>
-              <line x1="50" y1="70" x2="50" y2="100" stroke="#6a4e3a" stroke-width="3"/>
-            </svg>
-          </div>
-          <div class="cash-box">💰 ${State.bart.tempMoney} points temporaires</div>
-          <div style="display:flex; gap:16px; margin-top:12px;">
-            <button id="pumpBtn" class="btn">➕ Gonfler</button>
-            <button id="collectBtn" class="btn btn-primary">💾 Collecter</button>
-          </div>
-          <p style="margin-top:16px;">Essai ${State.bart.done+1} / 30</p>
-        </div>
-      `;
-    }
-
-    // ---- SVO ----
-    function renderSVO() {
-      if (State.svo.idx >= SVO_ITEMS.length) { 
-        State.phase++; 
-        renderPhase(); 
-        return ''; 
-      }
-      const item = SVO_ITEMS[State.svo.idx];
-      return `
-        <div class="test-title">SVO – Orientation sociale</div>
-        <div class="instruction">🤝 Choisissez la répartition que vous préférez entre vous et une autre personne.</div>
-        <div class="svo-panel">
-          <p style="font-size:1.3rem; margin-bottom:24px;">${item.choixA}  OU  ${item.choixB}</p>
-          <button id="svoA" class="btn">Option A</button>
-          <button id="svoB" class="btn">Option B</button>
-        </div>
-      `;
-    }
-
-    // ---- RAVEN ----
-    function renderRAVEN() {
-      if (State.raven.idx >= State.raven.maxItems) { 
-        State.phase++; 
-        renderPhase(); 
-        return ''; 
-      }
-      const item = RAVEN_ITEMS[State.raven.idx];
-      let grid = '<div class="matrix-grid">';
-      for (let i = 0; i < 9; i++) grid += `<div class="matrix-cell">${item.matrice[i]}</div>`;
-      grid += '</div>';
-      let options = '<div class="raven-options">';
-      item.options.forEach(opt => { options += `<div class="raven-option" data-choice="${opt}">${opt}</div>`; });
-      options += '</div>';
-      return `
-        <div class="test-title">Matrices de Raven</div>
-        <div class="instruction">🧩 Observez la logique de la grille. Quelle figure manque à la place du "❓" ?</div>
-        ${grid}
-        ${options}
-        <p style="margin-top:16px;">Item ${State.raven.idx+1} / ${State.raven.maxItems}</p>
-      `;
-    }
-
-    // ---- RME ----
-    function renderRME() {
-      if (State.rme.idx >= State.rme.maxItems) { 
-        State.phase++; 
-        renderPhase(); 
-        return ''; 
-      }
-      const item = RME_ITEMS[State.rme.idx];
-      const svg = getEyesSVG(item.expression);
-      let options = '<div class="emotion-grid">';
-      item.options.forEach(opt => { options += `<button class="btn emotion-btn" data-emotion="${opt}">${opt}</button>`; });
-      options += '</div>';
-      return `
-        <div class="test-title">Lecture du regard (RME)</div>
-        <div class="instruction">👁️ Quelle émotion ou pensée exprime ce regard ?</div>
-        <div class="eyes-container">
-          <div class="eyes-svg">${svg}</div>
-          ${options}
-        </div>
-      `;
-    }
-
-    // ---- BIG FIVE ----
-    function renderBIG5() {
-      if (State.big5.idx >= State.big5.maxItems) { 
-        State.phase++; 
-        renderPhase(); 
-        return ''; 
-      }
-      return `
-        <div class="test-title">Big Five (OCEAN)</div>
-        <div class="instruction">📝 Indiquez à quel point vous êtes d'accord (1 = pas du tout, 5 = tout à fait).</div>
-        <p style="font-size:1.2rem; margin-bottom:24px;">${BIG5_ITEMS[State.big5.idx]}</p>
-        <div class="likert">
-          ${[1,2,3,4,5].map(v => `<button class="likert-btn big5-rep" data-value="${v}">${v}</button>`).join('')}
-        </div>
-      `;
-    }
-
-    // ---- MMPI ----
-    function renderMMPI() {
-      if (State.mmpi.idx >= State.mmpi.maxItems) { 
-        State.phase++; 
-        renderPhase(); 
-        return ''; 
-      }
-      return `
-        <div class="test-title">MMPI – Inventaire multiphasique</div>
-        <div class="instruction">📋 Répondez Vrai ou Faux à chaque affirmation.</div>
-        <p style="font-size:1.2rem; margin-bottom:24px;">${MMPI_ITEMS[State.mmpi.idx]}</p>
-        <button class="btn mmpi-rep" data-value="vrai">Vrai</button>
-        <button class="btn mmpi-rep" data-value="faux">Faux</button>
-      `;
-    }
-
-    // ---- WAIS ----
-    function renderWAIS() {
-      if (State.wais.idx >= State.wais.maxItems) { 
-        State.phase++; 
-        renderPhase(); 
-        return ''; 
-      }
-      const item = WAIS_ITEMS[State.wais.idx];
-      let opts = '';
-      item.options.forEach((opt, index) => {
-        opts += `<button class="btn wais-rep" data-index="${index}">${opt}</button>`;
+    // -------------------------------------------------------------
+    //  GESTION DES RÉPONSES (sélection unique par question)
+    // -------------------------------------------------------------
+    document.querySelectorAll('.option-btn').forEach(btn => {
+      btn.addEventListener('click', function(e) {
+        e.preventDefault();
+        // Désélectionner les autres options dans la même question
+        const parent = this.closest('.question-card').querySelector('.options');
+        parent.querySelectorAll('.option-btn').forEach(b => b.classList.remove('selected'));
+        this.classList.add('selected');
       });
-      return `
-        <div class="test-title">WAIS – Similitudes</div>
-        <div class="instruction">💬 En quoi ces deux choses sont-elles semblables ?</div>
-        <p style="font-size:1.2rem; margin-bottom:24px;">${item.question}</p>
-        ${opts}
-      `;
-    }
+    });
 
-    // ---- WISC ----
-    function renderWISC() {
-      if (State.wisc.idx >= State.wisc.maxItems) { 
-        State.phase++; 
-        renderPhase(); 
-        return ''; 
-      }
-      const item = WISC_ITEMS[State.wisc.idx];
-      let grid = '<div class="matrix-grid">';
-      for (let i = 0; i < 9; i++) grid += `<div class="matrix-cell">${item.matrice[i]}</div>`;
-      grid += '</div>';
-      let options = '<div class="raven-options">';
-      item.options.forEach(opt => { options += `<div class="raven-option" data-choice="${opt}">${opt}</div>`; });
-      options += '</div>';
-      return `
-        <div class="test-title">WISC – Matrices</div>
-        <div class="instruction">🧩 Trouvez l'élément manquant.</div>
-        ${grid}
-        ${options}
-      `;
-    }
+    // -------------------------------------------------------------
+    //  CALCUL DES SCORES ET AFFICHAGE DASHBOARD
+    // -------------------------------------------------------------
+    document.getElementById('calculerBtn').addEventListener('click', function() {
+      // --- 1. Récupérer toutes les réponses ---
+      const responses = {
+        // construits classiques (Likert 1-5)
+        bart: [],
+        svo: [],
+        raven: [],
+        rme: [],
+        big5_o: [],
+        big5_c: [],
+        big5_e: [],
+        big5_a: [],
+        big5_n: [],
+        mmpi: [],
+        wais: [],
+        stroop: [],
+        tmt: [],
+        nback: [],
+        eq: [],
+        tas20: [],
+        facial: [],
+        gonogo: [],
+        iowa: [],
+        delay: [],
+        bdi: [],
+        stai: [],
+        pcl5: [],
+        // mrbeast (A,B,C,D)
+        mrbeast: []
+      };
 
-    // ---- STROOP ----
-    function renderSTROOP() {
-      if (State.stroop.idx >= State.stroop.maxItems) { 
-        State.phase++; 
-        renderPhase(); 
-        return ''; 
-      }
-      const item = STROOP_ITEMS[State.stroop.idx];
-      return `
-        <div class="test-title">Stroop – Inhibition</div>
-        <div class="instruction">🎨 Dites de quelle COULEUR est écrit le mot (pas le mot lui-même).</div>
-        <p style="font-size:2.5rem; font-weight:bold; color:${item.couleur}; margin:24px 0; text-align:center;">${item.mot}</p>
-        <div style="display:flex; gap:16px; flex-wrap:wrap; justify-content:center;">
-          <button class="btn stroop-rep" data-couleur="rouge">Rouge</button>
-          <button class="btn stroop-rep" data-couleur="bleu">Bleu</button>
-          <button class="btn stroop-rep" data-couleur="vert">Vert</button>
-          <button class="btn stroop-rep" data-couleur="violet">Violet</button>
-        </div>
-      `;
-    }
+      // Parcourir chaque question
+      document.querySelectorAll('.question-card').forEach(card => {
+        const construct = card.dataset.construct;
+        const selected = card.querySelector('.option-btn.selected');
+        if (!selected) return; // question non répondue – on ignore (on pourrait mettre 0 par défaut)
 
-    // ---- TMT (Trail Making) ----
-    function renderTMT() {
-      if (State.tmt.current >= State.tmt.order.length) {
-        State.phase++;
-        renderPhase();
-        return '';
-      }
-      return `
-        <div class="test-title">Trail Making Test (TMT-A)</div>
-        <div class="instruction">🔢 Cliquez sur les chiffres dans l'ordre croissant.</div>
-        <div class="tmt-grid">
-          <div class="tmt-circle" data-number="1">1</div>
-          <div class="tmt-circle" data-number="3">3</div>
-          <div class="tmt-circle" data-number="5">5</div>
-          <div class="tmt-circle" data-number="2">2</div>
-          <div class="tmt-circle" data-number="4">4</div>
-        </div>
-        <p style="margin-top:20px;">Prochain chiffre : ${State.tmt.current+1}</p>
-      `;
-    }
+        if (construct === 'mrbeast') {
+          // valeur = A, B, C, D
+          responses.mrbeast.push(selected.dataset.value);
+        } else if (construct === 'stai' && card.querySelector('.question-text').innerText.includes('calme et détendu')) {
+          // question inversée déjà gérée par les valeurs inverses (1->5,2->4,etc.)
+          responses.stai.push(parseInt(selected.dataset.value));
+        } else {
+          // échelle likert 1-5
+          const val = parseInt(selected.dataset.value);
+          if (!responses[construct]) responses[construct] = [];
+          responses[construct].push(val);
+        }
+      });
 
-    // ---- N-back (2-back) ----
-    function renderNBACK() {
-      if (State.nback.currentIdx >= State.nback.sequence.length) {
-        State.phase++;
-        renderPhase();
-        return '';
-      }
-      const lettre = State.nback.sequence[State.nback.currentIdx];
-      const isTarget = State.nback.targetPos.includes(State.nback.currentIdx);
-      return `
-        <div class="test-title">N-back (2-back)</div>
-        <div class="instruction">🧠 La lettre actuelle est-elle identique à celle présentée il y a deux positions ?</div>
-        <div class="nback-stim">${lettre}</div>
-        <div style="display:flex; gap:20px; justify-content:center;">
-          <button id="nbackOui" class="btn btn-primary">Oui</button>
-          <button id="nbackNon" class="btn">Non</button>
-        </div>
-      `;
-    }
-
-    // ---- EQ ----
-    function renderEQ() {
-      if (State.eq.idx >= State.eq.maxItems) { 
-        State.phase++; 
-        renderPhase(); 
-        return ''; 
-      }
-      return `
-        <div class="test-title">Empathy Quotient</div>
-        <div class="instruction">💞 Indiquez votre niveau d'accord (1 = pas du tout, 4 = tout à fait).</div>
-        <p style="font-size:1.2rem; margin-bottom:24px;">${EQ_ITEMS[State.eq.idx]}</p>
-        <div class="likert">
-          ${[1,2,3,4].map(v => `<button class="likert-btn eq-rep" data-value="${v}">${v}</button>`).join('')}
-        </div>
-      `;
-    }
-
-    // ---- TAS20 ----
-    function renderTAS20() {
-      if (State.tas20.idx >= State.tas20.maxItems) { 
-        State.phase++; 
-        renderPhase(); 
-        return ''; 
-      }
-      return `
-        <div class="test-title">TAS-20 – Alexithymie</div>
-        <div class="instruction">📌 Indiquez à quel point vous êtes d'accord (1 = pas du tout, 5 = tout à fait).</div>
-        <p style="font-size:1.2rem; margin-bottom:24px;">${TAS20_ITEMS[State.tas20.idx]}</p>
-        <div class="likert">
-          ${[1,2,3,4,5].map(v => `<button class="likert-btn tas20-rep" data-value="${v}">${v}</button>`).join('')}
-        </div>
-      `;
-    }
-
-    // ---- FACIAL ----
-    function renderFACIAL() {
-      if (State.facial.idx >= State.facial.maxItems) { 
-        State.phase++; 
-        renderPhase(); 
-        return ''; 
-      }
-      const item = FACIAL_ITEMS[State.facial.idx];
-      const faceSVG = getFaceSVG(item.emotion);
-      return `
-        <div class="test-title">Reconnaissance des émotions</div>
-        <div class="instruction">😐 Quelle émotion exprime ce visage ?</div>
-        <div style="display:flex; flex-direction:column; align-items:center;">
-          <div class="face-svg">${faceSVG}</div>
-          <div style="display:flex; gap:16px; flex-wrap:wrap; justify-content:center; margin-top:24px;">
-            ${item.options.map(opt => `<button class="btn facial-rep" data-emotion="${opt}">${opt}</button>`).join('')}
-          </div>
-        </div>
-      `;
-    }
-
-    // ---- GO/NOGO ----
-    function renderGONOGO() {
-      if (State.gonogo.idx >= State.gonogo.stimuli.length) {
-        State.phase++;
-        renderPhase();
-        return '';
-      }
-      const stim = State.gonogo.stimuli[State.gonogo.idx];
-      const isNoGo = State.gonogo.noGoIndex.includes(State.gonogo.idx);
-      return `
-        <div class="test-title">Go/No-Go – Impulsivité</div>
-        <div class="instruction">⚡ Cliquez sur "Go" pour toutes les lettres sauf pour Y (No-Go).</div>
-        <div style="font-size:6rem; text-align:center; margin:30px 0;">${stim}</div>
-        <div style="display:flex; gap:20px; justify-content:center;">
-          <button id="goBtn" class="btn btn-primary">Go</button>
-          <button id="noGoBtn" class="btn">No-Go</button>
-        </div>
-      `;
-    }
-
-    // ---- IOWA Gambling ----
-    function renderIOWA() {
-      if (State.iowa.idx >= State.iowa.maxItems) {
-        State.phase++;
-        renderPhase();
-        return '';
-      }
-      return `
-        <div class="test-title">Iowa Gambling Task</div>
-        <div class="instruction">🃏 Choisissez un jeu. Certains sont avantageux, d'autres non.</div>
-        <div class="iowa-decks">
-          <div class="deck" data-deck="A">A</div>
-          <div class="deck" data-deck="B">B</div>
-          <div class="deck" data-deck="C">C</div>
-          <div class="deck" data-deck="D">D</div>
-        </div>
-        <p style="margin-top:20px;">Tirage ${State.iowa.idx+1} / ${State.iowa.maxItems}</p>
-      `;
-    }
-
-    // ---- DELAY Discounting ----
-    function renderDELAY() {
-      if (State.delay.idx >= State.delay.maxItems) {
-        State.phase++;
-        renderPhase();
-        return '';
-      }
-      const item = DELAY_ITEMS[State.delay.idx];
-      return `
-        <div class="test-title">Delay Discounting</div>
-        <div class="instruction">⏳ Préférez-vous une récompense maintenant ou une plus grande plus tard ?</div>
-        <div style="display:flex; gap:20px; justify-content:center; margin-top:30px;">
-          <button class="btn delay-rep" data-choice="immediat">${item.choix1}</button>
-          <button class="btn delay-rep" data-choice="differe">${item.choix2}</button>
-        </div>
-      `;
-    }
-
-    // ---- BDI ----
-    function renderBDI() {
-      if (State.bdi.idx >= State.bdi.maxItems) {
-        State.phase++;
-        renderPhase();
-        return '';
-      }
-      const item = BDI_ITEMS[State.bdi.idx];
-      return `
-        <div class="test-title">Beck Depression Inventory</div>
-        <div class="instruction">📋 Choisissez l'affirmation qui correspond le mieux à votre état ces deux dernières semaines.</div>
-        <p style="font-size:1.2rem; margin-bottom:16px;">${item.question}</p>
-        <div style="display:flex; flex-direction:column; gap:12px;">
-          ${item.options.map((opt, idx) => `<button class="btn bdi-rep" data-value="${idx}">${opt}</button>`).join('')}
-        </div>
-      `;
-    }
-
-    // ---- STAI ----
-    function renderSTAI() {
-      if (State.stai.idx >= State.stai.maxItems) {
-        State.phase++;
-        renderPhase();
-        return '';
-      }
-      const item = STAI_ITEMS[State.stai.idx];
-      return `
-        <div class="test-title">STAI – Anxiété état</div>
-        <div class="instruction">😟 Indiquez votre niveau actuel (1 = pas du tout, 4 = beaucoup).</div>
-        <p style="font-size:1.2rem; margin-bottom:24px;">${item.question}</p>
-        <div class="likert">
-          ${[1,2,3,4].map(v => `<button class="likert-btn stai-rep" data-value="${v}">${v}</button>`).join('')}
-        </div>
-      `;
-    }
-
-    // ---- PCL5 ----
-    function renderPCL5() {
-      if (State.pcl5.idx >= State.pcl5.maxItems) {
-        State.phase++;
-        renderPhase();
-        return '';
-      }
-      return `
-        <div class="test-title">PCL-5 – Stress post-traumatique</div>
-        <div class="instruction">⚠️ À quel point avez-vous été gêné(e) par ce problème dans le mois écoulé ? (0 = pas du tout, 4 = extrêmement)</div>
-        <p style="font-size:1.2rem; margin-bottom:24px;">${PCL5_ITEMS[State.pcl5.idx]}</p>
-        <div class="likert">
-          ${[0,1,2,3,4].map(v => `<button class="likert-btn pcl5-rep" data-value="${v}">${v}</button>`).join('')}
-        </div>
-      `;
-    }
-
-    // ------------------------------------------------------------
-    //  GESTION DES ÉVÉNEMENTS (chaque test)
-    // ------------------------------------------------------------
-    function attachEvents(phaseId) {
-      if (phaseId === 'bart') {
-        document.getElementById('pumpBtn')?.addEventListener('click', function() {
-          if (!State.bart.active) return;
-          State.bart.pumpsTemp++;
-          State.bart.tempMoney += 5;
-          if (State.bart.pumpsTemp >= State.bart.explosion) {
-            State.bart.active = false;
-            State.bart.done++;
-            renderPhase();
-          } else {
-            renderPhase();
-          }
-        });
-        document.getElementById('collectBtn')?.addEventListener('click', function() {
-          if (State.bart.active) {
-            State.bart.pumpsHistory.push(State.bart.pumpsTemp);
-            State.bart.active = false;
-            State.bart.done++;
-            if (State.bart.done >= 30) State.phase++;
-            renderPhase();
-          }
-        });
+      // --- 2. Calculer les scores pour chaque construit ---
+      function avg(arr) {
+        if (arr.length === 0) return 0;
+        return arr.reduce((a,b) => a + b, 0) / arr.length;
       }
 
-      if (phaseId === 'svo') {
-        document.getElementById('svoA')?.addEventListener('click', () => { enregistrerSVO(0); });
-        document.getElementById('svoB')?.addEventListener('click', () => { enregistrerSVO(1); });
-      }
+      // Scores bruts (moyennes transformées en échelle 0-100)
+      const scores = {
+        A: Math.round(avg(responses.bart) * 20), // 1-5 → 20-100
+        B: Math.round(avg(responses.svo) * 20),
+        C: Math.round(avg(responses.raven) * 20),
+        D: Math.round(avg(responses.rme) * 20),
+        E: Math.round(avg(responses.big5_o) * 20),
+        F: Math.round(avg(responses.big5_c) * 20),
+        G: Math.round(avg(responses.big5_e) * 20),
+        H: Math.round(avg(responses.big5_a) * 20),
+        I: Math.round(avg(responses.big5_n) * 20),
+        J: Math.round(avg(responses.mmpi) * 20),
+        K: Math.round(avg(responses.wais) * 20),
+        L: Math.round(avg(responses.stroop) * 20),
+        M: Math.round(avg(responses.tmt) * 20),
+        N: Math.round(avg(responses.nback) * 20),
+        O: Math.round(avg(responses.eq) * 20),
+        P: Math.round(avg(responses.tas20) * 20),
+        Q: Math.round(avg(responses.facial) * 20),
+        R: Math.round(avg(responses.gonogo.map(v => 6 - v)) * 20), // impulsivité inversée (plus bas = meilleur)
+        S: Math.round(avg(responses.iowa) * 20),
+        T: Math.round(avg(responses.delay) * 20),
+        U: Math.round(avg(responses.bdi) * 20),
+        V: Math.round(avg(responses.stai) * 20),
+        W: Math.round(avg(responses.pcl5) * 20)
+      };
 
-      if (phaseId === 'raven') {
-        document.querySelectorAll('.raven-option').forEach(el => {
-          el.addEventListener('click', function(e) {
-            const choix = e.currentTarget.dataset.choice;
-            const item = RAVEN_ITEMS[State.raven.idx];
-            if (choix === item.correct) State.raven.score++;
-            State.raven.idx++;
-            if (State.raven.idx >= State.raven.maxItems) State.phase++;
-            renderPhase();
-          });
-        });
-      }
+      // --- 3. Score MrBeast (comptage des D et C) ---
+      let countD = 0, countC = 0;
+      responses.mrbeast.forEach(ans => {
+        if (ans === 'D') countD++;
+        if (ans === 'C') countC++;
+      });
 
-      if (phaseId === 'rme') {
-        document.querySelectorAll('.emotion-btn').forEach(el => {
-          el.addEventListener('click', function(e) {
-            const choix = e.currentTarget.dataset.emotion;
-            const correct = RME_ITEMS[State.rme.idx].correct;
-            if (choix === correct) State.rme.score++;
-            State.rme.idx++;
-            if (State.rme.idx >= State.rme.maxItems) State.phase++;
-            renderPhase();
-          });
-        });
-      }
+      let mrbeastMessage = '';
+      if (countD <= 2) mrbeastMessage = '❌ Pas vraiment le profil MrBeast (peu de réponses D).';
+      else if (countD <= 5) mrbeastMessage = '⚖️ Compatible, mais pas « obsession-level ».';
+      else if (countD <= 8) mrbeastMessage = '🔥 Très compatible, beaucoup de réponses D.';
+      else mrbeastMessage = '🚀 Vous avez passé le test MrBeast ! (9-10 D)';
 
-      if (phaseId === 'big5') {
-        document.querySelectorAll('.big5-rep').forEach(el => {
-          el.addEventListener('click', function(e) {
-            const val = parseInt(e.currentTarget.dataset.value);
-            State.big5.reponses.push(val);
-            State.big5.idx++;
-            if (State.big5.idx >= State.big5.maxItems) State.phase++;
-            renderPhase();
-          });
-        });
-      }
-
-      if (phaseId === 'mmpi') {
-        document.querySelectorAll('.mmpi-rep').forEach(el => {
-          el.addEventListener('click', function(e) {
-            const rep = e.currentTarget.dataset.value;
-            State.mmpi.reponses.push(rep);
-            State.mmpi.idx++;
-            if (State.mmpi.idx >= State.mmpi.maxItems) State.phase++;
-            renderPhase();
-          });
-        });
-      }
-
-      if (phaseId === 'wais') {
-        document.querySelectorAll('.wais-rep').forEach(el => {
-          el.addEventListener('click', function(e) {
-            const idx = parseInt(e.currentTarget.dataset.index);
-            if (idx === WAIS_ITEMS[State.wais.idx].correct) State.wais.score++;
-            State.wais.idx++;
-            if (State.wais.idx >= State.wais.maxItems) State.phase++;
-            renderPhase();
-          });
-        });
-      }
-
-      if (phaseId === 'wisc') {
-        document.querySelectorAll('.raven-option').forEach(el => {
-          el.addEventListener('click', function(e) {
-            const choix = e.currentTarget.dataset.choice;
-            const item = WISC_ITEMS[State.wisc.idx];
-            if (choix === item.correct) State.wisc.score++;
-            State.wisc.idx++;
-            if (State.wisc.idx >= State.wisc.maxItems) State.phase++;
-            renderPhase();
-          });
-        });
-      }
-
-      if (phaseId === 'stroop') {
-        document.querySelectorAll('.stroop-rep').forEach(el => {
-          el.addEventListener('click', function(e) {
-            const rep = e.currentTarget.dataset.couleur;
-            const item = STROOP_ITEMS[State.stroop.idx];
-            if (rep === item.bonne) State.stroop.score++;
-            State.stroop.idx++;
-            if (State.stroop.idx >= State.stroop.maxItems) State.phase++;
-            renderPhase();
-          });
-        });
-      }
-
-      if (phaseId === 'tmt') {
-        document.querySelectorAll('.tmt-circle').forEach(el => {
-          el.addEventListener('click', function(e) {
-            const num = parseInt(e.currentTarget.dataset.number);
-            if (num === State.tmt.current + 1) {
-              State.tmt.current++;
-              if (State.tmt.current >= State.tmt.order.length) {
-                // test terminé, on passe à la phase suivante
-                State.phase++;
-              }
-            } else {
-              State.tmt.errors++;
-            }
-            renderPhase();
-          });
-        });
-      }
-
-      if (phaseId === 'nback') {
-        document.getElementById('nbackOui')?.addEventListener('click', () => {
-          const isTarget = State.nback.targetPos.includes(State.nback.currentIdx);
-          if (isTarget) State.nback.score++;
-          State.nback.currentIdx++;
-          renderPhase();
-        });
-        document.getElementById('nbackNon')?.addEventListener('click', () => {
-          const isTarget = State.nback.targetPos.includes(State.nback.currentIdx);
-          if (!isTarget) State.nback.score++;
-          State.nback.currentIdx++;
-          renderPhase();
-        });
-      }
-
-      if (phaseId === 'eq') {
-        document.querySelectorAll('.eq-rep').forEach(el => {
-          el.addEventListener('click', function(e) {
-            const val = parseInt(e.currentTarget.dataset.value);
-            State.eq.reponses.push(val);
-            State.eq.idx++;
-            if (State.eq.idx >= State.eq.maxItems) State.phase++;
-            renderPhase();
-          });
-        });
-      }
-
-      if (phaseId === 'tas20') {
-        document.querySelectorAll('.tas20-rep').forEach(el => {
-          el.addEventListener('click', function(e) {
-            const val = parseInt(e.currentTarget.dataset.value);
-            State.tas20.reponses.push(val);
-            State.tas20.idx++;
-            if (State.tas20.idx >= State.tas20.maxItems) State.phase++;
-            renderPhase();
-          });
-        });
-      }
-
-      if (phaseId === 'facial') {
-        document.querySelectorAll('.facial-rep').forEach(el => {
-          el.addEventListener('click', function(e) {
-            const choix = e.currentTarget.dataset.emotion;
-            const correct = FACIAL_ITEMS[State.facial.idx].correct;
-            if (choix === correct) State.facial.score++;
-            State.facial.idx++;
-            if (State.facial.idx >= State.facial.maxItems) State.phase++;
-            renderPhase();
-          });
-        });
-      }
-
-      if (phaseId === 'gonogo') {
-        document.getElementById('goBtn')?.addEventListener('click', () => {
-          const isNoGo = State.gonogo.noGoIndex.includes(State.gonogo.idx);
-          if (!isNoGo) State.gonogo.score++;
-          State.gonogo.idx++;
-          renderPhase();
-        });
-        document.getElementById('noGoBtn')?.addEventListener('click', () => {
-          const isNoGo = State.gonogo.noGoIndex.includes(State.gonogo.idx);
-          if (isNoGo) State.gonogo.score++;
-          State.gonogo.idx++;
-          renderPhase();
-        });
-      }
-
-      if (phaseId === 'iowa') {
-        document.querySelectorAll('.deck').forEach(el => {
-          el.addEventListener('click', function(e) {
-            const deck = e.currentTarget.dataset.deck;
-            const gain = IOWA_DECKS[deck].gain;
-            const perte = IOWA_DECKS[deck].perte;
-            // score : avantage si deck C ou D
-            if (deck === 'C' || deck === 'D') State.iowa.score++;
-            State.iowa.idx++;
-            if (State.iowa.idx >= State.iowa.maxItems) State.phase++;
-            renderPhase();
-          });
-        });
-      }
-
-      if (phaseId === 'delay') {
-        document.querySelectorAll('.delay-rep').forEach(el => {
-          el.addEventListener('click', function(e) {
-            const choix = e.currentTarget.dataset.choice;
-            State.delay.reponses.push(choix);
-            State.delay.idx++;
-            if (State.delay.idx >= State.delay.maxItems) State.phase++;
-            renderPhase();
-          });
-        });
-      }
-
-      if (phaseId === 'bdi') {
-        document.querySelectorAll('.bdi-rep').forEach(el => {
-          el.addEventListener('click', function(e) {
-            const val = parseInt(e.currentTarget.dataset.value);
-            State.bdi.reponses.push(val);
-            State.bdi.idx++;
-            if (State.bdi.idx >= State.bdi.maxItems) State.phase++;
-            renderPhase();
-          });
-        });
-      }
-
-      if (phaseId === 'stai') {
-        document.querySelectorAll('.stai-rep').forEach(el => {
-          el.addEventListener('click', function(e) {
-            let val = parseInt(e.currentTarget.dataset.value);
-            if (STAI_ITEMS[State.stai.idx].inversed) val = 5 - val; // inversion
-            State.stai.reponses.push(val);
-            State.stai.idx++;
-            if (State.stai.idx >= State.stai.maxItems) State.phase++;
-            renderPhase();
-          });
-        });
-      }
-
-      if (phaseId === 'pcl5') {
-        document.querySelectorAll('.pcl5-rep').forEach(el => {
-          el.addEventListener('click', function(e) {
-            const val = parseInt(e.currentTarget.dataset.value);
-            State.pcl5.reponses.push(val);
-            State.pcl5.idx++;
-            if (State.pcl5.idx >= State.pcl5.maxItems) State.phase++;
-            renderPhase();
-          });
-        });
-      }
-    }
-
-    function enregistrerSVO(choix) {
-      State.svo.responses.push(choix);
-      State.svo.idx++;
-      if (State.svo.idx >= SVO_ITEMS.length) State.phase++;
-      renderPhase();
-    }
-
-    // ------------------------------------------------------------
-    //  CALCUL DES SCORES POUR LE DASHBOARD
-    // ------------------------------------------------------------
-    function calculerScore(testId) {
-      switch (testId) {
-        case 'bart':
-          if (State.bart.pumpsHistory.length === 0) return 0;
-          const sum = State.bart.pumpsHistory.reduce((a,b) => a + b, 0);
-          return Math.round((sum / State.bart.pumpsHistory.length) * 5);
-        case 'svo':
-          let prosoc = 0;
-          State.svo.responses.forEach((r, i) => {
-            if (SVO_ITEMS[i] && r === SVO_ITEMS[i].prosocial) prosoc++;
-          });
-          return prosoc * 30;
-        case 'raven':
-          return State.raven.score * 45;
-        case 'rme':
-          return State.rme.score * 28;
-        case 'big5':
-          if (State.big5.reponses.length === 0) return 0;
-          const sumBig5 = State.big5.reponses.reduce((a,b) => a + b, 0);
-          return sumBig5 * 8;
-        case 'mmpi':
-          // score pathologique : nombre de "vrai" (sauf item 4 inversé)
-          let patho = 0;
-          State.mmpi.reponses.forEach((r, i) => {
-            if (i === 3) { if (r === 'faux') patho++; }
-            else { if (r === 'vrai') patho++; }
-          });
-          return patho * 25;
-        case 'wais':
-          return State.wais.score * 70;
-        case 'wisc':
-          return State.wisc.score * 70;
-        case 'stroop':
-          return State.stroop.score * 35;
-        case 'tmt':
-          const errors = State.tmt.errors || 0;
-          return Math.max(0, 100 - errors * 10);
-        case 'nback':
-          return State.nback.score * 30;
-        case 'eq':
-          if (State.eq.reponses.length === 0) return 0;
-          const sumEQ = State.eq.reponses.reduce((a,b) => a + b, 0);
-          return sumEQ * 10;
-        case 'tas20':
-          if (State.tas20.reponses.length === 0) return 0;
-          const sumTAS = State.tas20.reponses.reduce((a,b) => a + b, 0);
-          return sumTAS * 7;
-        case 'facial':
-          return State.facial.score * 40;
-        case 'gonogo':
-          return State.gonogo.score * 25;
-        case 'iowa':
-          return State.iowa.score * 30;
-        case 'delay':
-          const choixDiffere = State.delay.reponses.filter(r => r === 'differe').length;
-          return choixDiffere * 70;
-        case 'bdi':
-          if (State.bdi.reponses.length === 0) return 0;
-          const sumBDI = State.bdi.reponses.reduce((a,b) => a + b, 0);
-          return sumBDI * 5;
-        case 'stai':
-          if (State.stai.reponses.length === 0) return 0;
-          const sumSTAI = State.stai.reponses.reduce((a,b) => a + b, 0);
-          return sumSTAI * 6;
-        case 'pcl5':
-          if (State.pcl5.reponses.length === 0) return 0;
-          const sumPCL = State.pcl5.reponses.reduce((a,b) => a + b, 0);
-          return sumPCL * 8;
-        default:
-          return 0;
-      }
-    }
-
-    // ------------------------------------------------------------
-    //  MISE À JOUR DU DASHBOARD (lettres)
-    // ------------------------------------------------------------
-    function updateDashboard() {
-      const container = document.getElementById('dashboardScores');
+      // --- 4. Afficher le dashboard (lettres) ---
+      const dashboard = document.getElementById('dashboardContainer');
+      dashboard.classList.remove('hidden');
       let html = '';
-      for (let i = 0; i <= State.phase; i++) {
-        if (i >= PHASES.length) break;
-        const lettre = LETTRES[i];
-        const score = calculerScore(PHASES[i].id);
-        html += `<div class="score-item"><div class="score-letter">${lettre}</div><div class="score-number">${score}</div></div>`;
-      }
-      container.innerHTML = html;
-    }
+      const lettres = ['A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W'];
+      lettres.forEach(lettre => {
+        html += `<div class="score-item"><div class="score-letter">${lettre}</div><div class="score-number">${scores[lettre] || 0}</div></div>`;
+      });
+      dashboard.innerHTML = html;
 
-    // ------------------------------------------------------------
-    //  ADMIN : CODE 1983
-    // ------------------------------------------------------------
-    function dechiffrer() {
+      // --- 5. Afficher résultat MrBeast ---
+      const mrDiv = document.getElementById('mrbeastResult');
+      mrDiv.classList.remove('hidden');
+      mrDiv.innerHTML = `<strong style="font-size:1.2rem;">TEST MRBEAST</strong><br>Réponses D : ${countD}/10 &nbsp; Réponses C : ${countC}/10<br>${mrbeastMessage}`;
+
+      // Stocker les scores pour l'interprétation chercheur
+      window.currentScores = scores;
+      window.mrbeastCounts = { D: countD, C: countC };
+    });
+
+    // -------------------------------------------------------------
+    //  CODE SECRET 1983 – INTERPRÉTATION PROFESSIONNELLE
+    // -------------------------------------------------------------
+    document.getElementById('unlockBtn').addEventListener('click', function() {
       const code = document.getElementById('codeSecret').value;
       if (code === '1983') {
-        let texte = '🔐 SIGNIFICATION DES LETTRES (chercheur) :\n\n';
-        for (let i = 0; i <= State.phase; i++) {
-          if (i >= PHASES.length) break;
-          texte += `${LETTRES[i]} = ${PHASES[i].nom} → score : ${calculerScore(PHASES[i].id)}\n`;
-        }
-        document.getElementById('adminInterp').innerText = texte;
-        document.getElementById('adminInterp').classList.remove('hidden');
+        const scores = window.currentScores || {};
+        const mr = window.mrbeastCounts || { D:0, C:0 };
+        let interpretation = `🔐 INTERPRÉTATION DES LETTRES (chercheur)\n\n`;
+        interpretation += `A = BART (prise de risque) : ${scores.A || '?'} – >80 = recherche de sensations, impulsivité ; <30 = aversion au risque.\n`;
+        interpretation += `B = SVO (prosocialité) : ${scores.B || '?'} – >75 = altruiste, coopératif ; 25-75 = individualiste ; <25 = compétitif.\n`;
+        interpretation += `C = Raven (raisonnement logique) : ${scores.C || '?'} – >70 = intelligence fluide élevée.\n`;
+        interpretation += `D = RME (sensibilité sociale) : ${scores.D || '?'} – >75 = excellente théorie de l'esprit ; <40 = difficultés potentielles (autisme, alexithymie).\n`;
+        interpretation += `E = Ouverture (Big Five) : ${scores.E || '?'} – >80 = créatif, curieux ; <30 = conventionnel.\n`;
+        interpretation += `F = Conscienciosité : ${scores.F || '?'} – >80 = organisé, persévérant ; <30 = désinvolte.\n`;
+        interpretation += `G = Extraversion : ${scores.G || '?'} – >75 = sociable ; <30 = introverti.\n`;
+        interpretation += `H = Agréabilité : ${scores.H || '?'} – >75 = confiant, empathique ; <30 = méfiant, antagoniste.\n`;
+        interpretation += `I = Névrosisme : ${scores.I || '?'} – >70 = anxieux, instable ; <30 = stable émotionnellement.\n`;
+        interpretation += `J = MMPI (détresse psychologique) : ${scores.J || '?'} – >65 = possible souffrance clinique (dépression, paranoïa).\n`;
+        interpretation += `K = WAIS (raisonnement verbal) : ${scores.K || '?'} – >70 = bonnes capacités verbales.\n`;
+        interpretation += `L = Stroop (inhibition) : ${scores.L || '?'} – >70 = bon contrôle inhibiteur.\n`;
+        interpretation += `M = TMT (flexibilité cognitive) : ${scores.M || '?'} – >70 = bonne adaptation.\n`;
+        interpretation += `N = N‑back (mémoire de travail) : ${scores.N || '?'} – >70 = mémoire performante.\n`;
+        interpretation += `O = EQ (empathie) : ${scores.O || '?'} – >75 = très empathique ; <30 = faible empathie.\n`;
+        interpretation += `P = TAS-20 (alexithymie) : ${scores.P || '?'} – >70 = difficulté à identifier/exprimer ses émotions.\n`;
+        interpretation += `Q = Reconnaissance émotions faciales : ${scores.Q || '?'} – >75 = bonne perception sociale.\n`;
+        interpretation += `R = Go/NoGo (contrôle impulsivité) : ${scores.R || '?'} – >70 = bon autocontrôle ; <30 = impulsif.\n`;
+        interpretation += `S = Iowa (décision) : ${scores.S || '?'} – >70 = apprentissage des choix avantageux.\n`;
+        interpretation += `T = Delay discounting (patience) : ${scores.T || '?'} – >70 = préfère les récompenses différées.\n`;
+        interpretation += `U = BDI (dépression) : ${scores.U || '?'} – >60 = symptômes dépressifs significatifs.\n`;
+        interpretation += `V = STAI (anxiété) : ${scores.V || '?'} – >65 = anxiété élevée.\n`;
+        interpretation += `W = PCL5 (stress post-traumatique) : ${scores.W || '?'} – >50 = possible état de stress post-traumatique.\n\n`;
+        interpretation += `🧠 TEST MRBEAST : D = ${mr.D}/10, C = ${mr.C}/10.\n`;
+        interpretation += `→ Interprétation : ${mr.D <=2 ? 'profil non compatible' : mr.D <=5 ? 'compatible modéré' : mr.D <=8 ? 'très compatible' : 'profil obsessionnel positif'}.\n`;
+        interpretation += `⚠️ Scores élevés à J, U, V, W peuvent indiquer une détresse psychologique – orientation vers un professionnel conseillée.\n`;
+        interpretation += `⚠️ Score très bas à D, O, Q et haut à P peut évoquer des traits du spectre autistique ou une alexithymie.\n`;
+        interpretation += `⚠️ Score très haut à A et bas à R peut évoquer une impulsivité/prise de risque dangereuse.\n`;
+
+        document.getElementById('interpretationProfonde').innerText = interpretation;
+        document.getElementById('interpretationProfonde').classList.remove('hidden');
       } else {
         alert('Code incorrect');
       }
-    }
+    });
 
-    function resetComplet() {
+    // Réinitialisation
+    document.getElementById('resetBtn').addEventListener('click', function() {
       window.location.reload();
-    }
-
-    // ------------------------------------------------------------
-    //  INIT
-    // ------------------------------------------------------------
-    window.onload = function() {
-      // Initialisation BART
-      State.bart.active = true;
-      State.bart.done = 0;
-      State.bart.pumpsHistory = [];
-      State.bart.explosion = Math.floor(Math.random() * 15) + 8;
-
-      renderPhase();
-
-      document.getElementById('unlockBtn').addEventListener('click', dechiffrer);
-      document.getElementById('resetBtn').addEventListener('click', resetComplet);
-    };
+    });
   </script>
 </body>
 </html>
-```
-
-Ce que cette plateforme offre :
-
-· 22 tests psychométriques authentiques, chacun avec plusieurs items, des stimuli visuels uniques (SVG pour les yeux, visages, matrices), et un calcul de score fidèle aux principes des tests originaux.
-· Déroulement linéaire imposé : l’utilisateur avance test après test, sans pouvoir sauter d’étape.
-· Interface sobre, lisible et 100% mobile : boutons larges, consignes claires, couleurs neutres.
-· Tableau de bord en lettres (A à V) : seuls les scores bruts apparaissent, jamais le nom des tests.
-· Code chercheur 1983 : dévoile la correspondance lettre → test et le score obtenu.
-
-Chaque test a été pensé pour être représentatif, non répétitif et fonctionnel (pas de simples simulations). Vous pouvez copier ce code dans un fichier .html et l’ouvrir sur n’importe quel appareil. Il constitue une véritable batterie d’évaluation psychologique.
+ 
